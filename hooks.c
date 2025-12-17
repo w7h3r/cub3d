@@ -28,6 +28,6 @@ int	detect_key_press(t_data *data, int key_code)
 		rotate_left(data->player);
 	else if (key_code == KEY_R_ARR)
 		rotate_right(data->player);
-	generate_frame(data);
+	renderer(data);
 	return (0);
 }
