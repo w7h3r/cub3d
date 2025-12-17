@@ -6,7 +6,8 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 18:52:32 by muokcan           #+#    #+#             */
-/*   Updated: 2025/12/17 18:52:33 by muokcan          ###   ########.fr       */
+/*   Updated: 2025/12/17 18:55:54 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "lib/minilibx-linux/mlx.h"
