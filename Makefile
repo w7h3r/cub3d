@@ -7,7 +7,8 @@ SRC=	main.c \
 		draw_shapes.c \
 		draw_utils.c \
 		init.c	\
-		draw_minimap.c
+		draw_minimap.c \
+		renderer.c
 
 OBJ=$(SRC:.c=.o)
 LIBFT=lib/libft/libft.a

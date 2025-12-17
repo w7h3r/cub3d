@@ -23,10 +23,8 @@ int main(void)
 	init_data(&data);
 	init_mlx(&data);
 
-	draw_minimap(&data);
-	draw_player(&data);
+	renderer(&data);
 
-	mlx_put_image_to_window(data.mlx->mlx, data.mlx->win, data.mlx->img, 0, 0);
 	mlx_loop(data.mlx->mlx);
 	return (0);
 }

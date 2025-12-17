@@ -25,4 +25,6 @@
 # define KEY_R_ARR 65363
 # define KEY_ESC 65307
 
+# define IMAGE_ERASE_COLOR 0x111111
+
 #endif

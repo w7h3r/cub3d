@@ -29,4 +29,6 @@ void	init_mlx(t_data *data);
 void	init_data(t_data *data);
 void	init_player(t_player *player);
 
+void	renderer(t_data *data);
+
 #endif

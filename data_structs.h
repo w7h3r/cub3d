@@ -21,6 +21,8 @@ typedef struct	s_mlx
 	void	*win;
 	void	*img;
 	char	*addr;
+	void	*bg_img;
+	char	*bg_addr;
 	int		bitbp;
 	int		l_len;
 	int		endian;

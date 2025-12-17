@@ -41,14 +41,34 @@ void	init_data(t_data *data)
 	data->mlx->img = NULL;
 }
 
+void	fill_background(t_data *data, int color)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < W_HE)
+	{
+		x = 0;
+		while (x < W_WI)
+		{
+			put_pixel_to_img(data, x, y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
 void	init_mlx(t_data *data)
 {
 	data->mlx->mlx = mlx_init();
 	if (!data->mlx->mlx)
 		err_exit_init(data, "Error: Can't initialize mlx");
+
 	data->mlx->win = mlx_new_window(data->mlx->mlx, W_WI, W_HE, "cub3D");
 	if (!data->mlx->win)
 		err_exit_init(data, "Error: Can't initialize window");
+
 	data->mlx->img = mlx_new_image(data->mlx->mlx, W_WI, W_HE);
 	if (!data->mlx->img)
 		err_exit_init(data, "Error: Can't initialize image");
@@ -56,6 +76,15 @@ void	init_mlx(t_data *data)
 			&data->mlx->l_len, &data->mlx->endian);
 	if (!data->mlx->addr)
 		err_exit_init(data, "Error: Can't take the image addr");
+
+	data->mlx->bg_img = mlx_new_image(data->mlx->mlx, W_WI, W_HE);
+	if (!data->mlx->bg_img)
+		err_exit_init(data, "Error: Can't initialize image");
+	data->mlx->bg_addr = mlx_get_data_addr(data->mlx->bg_img, &data->mlx->bitbp, \
+			&data->mlx->l_len, &data->mlx->endian);
+	if (!data->mlx->addr)
+		err_exit_init(data, "Error: Can't take the image addr");
+	fill_background(data, 0x111111);
 }
 
 void	init_player(t_player *player)
