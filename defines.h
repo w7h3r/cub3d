@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_structs.h                                     :+:      :+:    :+:   */
+/*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/12 17:03:13 by muokcan           #+#    #+#             */
-/*   Updated: 2025/12/12 17:07:24 by muokcan          ###   ########.fr       */
+/*   Created: 2025/12/17 13:50:29 by muokcan           #+#    #+#             */
+/*   Updated: 2025/12/17 18:14:55 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GAME_STRUCTS_H
-# define GAME_STRUCTS_H
+#ifndef DEFINES_H
+# define DEFINES_H
 
-# include "lib/minilibx-linux/mlx.h"
+# define M_TILE_SIZE 64
+# define W_HE 900
+# define W_WI 1200
 
-typedef struct	s_mlx
-{
-
-}	t_mlx;
-
-typedef struct	s_game
-{
-
-}	t_game;
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_W 119
+# define KEY_L_ARR 65361
+# define KEY_R_ARR 65363
+# define KEY_ESC 65307
 
 #endif
