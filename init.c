@@ -11,8 +11,10 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "defines.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 void	err_exit_init(t_data *data, const char *err_msg)
 {
@@ -39,23 +41,23 @@ void	init_data(t_data *data)
 	data->mlx->win = NULL;
 	data->mlx->addr = NULL;
 	data->mlx->img = NULL;
+	data->mlx->bg_addr = NULL;
+	data->mlx->bg_img = NULL;
 }
 
 void	fill_background(t_data *data, int color)
 {
-	int	x;
-	int	y;
+	int	*bg_addr;
+	int	total_pixels;
+	int	i;
 
-	y = 0;
-	while (y < W_HE)
+	bg_addr = (int *)data->mlx->bg_addr;
+	total_pixels = W_HE * W_WI;
+	i = 0;
+	while (i < total_pixels)
 	{
-		x = 0;
-		while (x < W_WI)
-		{
-			put_pixel_to_img(data, x, y, color);
-			x++;
-		}
-		y++;
+		bg_addr[i] = color;
+		i++;
 	}
 }
 
@@ -82,17 +84,26 @@ void	init_mlx(t_data *data)
 		err_exit_init(data, "Error: Can't initialize image");
 	data->mlx->bg_addr = mlx_get_data_addr(data->mlx->bg_img, &data->mlx->bitbp, \
 			&data->mlx->l_len, &data->mlx->endian);
-	if (!data->mlx->addr)
+	if (!data->mlx->bg_addr)
 		err_exit_init(data, "Error: Can't take the image addr");
 	fill_background(data, 0x111111);
 }
 
+void	update_vectors(t_player *player)
+{
+	player->x_dir = cos(player->angle);
+	player->y_dir = sin(player->angle);
+	player->x_plane = -sin(player->angle) * 0.66;
+	player->y_plane = cos(player->angle) * 0.66;
+}
+
 void	init_player(t_player *player)
 {
-	player->x_coor = 5;
-	player->y_coor = 5;
+	player->x_coor = 5.5;
+	player->y_coor = 5.5;
 	player->x_dir = -1;
 	player->y_dir = 0;
 	player->x_plane = 0;
 	player->y_plane = 0.66;
+	player->angle = 3.14 * 1.5;
 }
