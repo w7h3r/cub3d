@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 15:04:32 by muokcan           #+#    #+#             */
-/*   Updated: 2025/12/17 18:24:29 by muokcan          ###   ########.fr       */
+/*   Updated: 2025/12/23 13:32:47 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +55,6 @@ void	init_data(t_data *data)
 	data->mlx->bg_img = NULL;
 }
 
-void	fill_background(t_data *data, int color)
-{
-	int	*bg_addr;
-	int	total_pixels;
-	int	i;
-
-	bg_addr = (int *)data->mlx->bg_addr;
-	total_pixels = W_HE * W_WI;
-	i = 0;
-	while (i < total_pixels)
-	{
-		bg_addr[i] = color;
-		i++;
-	}
-}
-
 void	init_mlx(t_data *data)
 {
 	data->mlx->mlx = mlx_init();
@@ -96,7 +80,7 @@ void	init_mlx(t_data *data)
 			&data->mlx->l_len, &data->mlx->endian);
 	if (!data->mlx->bg_addr)
 		err_exit_init(data, "Error: Can't take the image addr");
-	fill_background(data, 0x111111);
+	fill_background(data, IMAGE_ERASE_COLOR);
 }
 
 void	update_vectors(t_player *player)
@@ -116,5 +100,5 @@ void	init_player(t_player *player)
 	player->x_plane = 0;
 	player->y_plane = 0.66;
 	player->angle = 3.14 * 1.5;
-	update_vectors(player);
+	init_keys(&player->key_state);
 }

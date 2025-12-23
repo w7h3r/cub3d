@@ -13,7 +13,7 @@
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define M_TILE_SIZE 64
+# define M_TILE_SIZE 128
 # define W_HE 900
 # define W_WI 1200
 
