@@ -24,6 +24,7 @@
 # define KEY_L_ARR 65361
 # define KEY_R_ARR 65363
 # define KEY_ESC 65307
+# define BUTTON_CLOSE 17
 
 # define IMAGE_ERASE_COLOR 0x111111
 

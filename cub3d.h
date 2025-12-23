@@ -28,7 +28,10 @@ void	draw_player(t_data *data);
 void	init_mlx(t_data *data);
 void	init_data(t_data *data);
 void	init_player(t_player *player);
+void	exit_program(t_data *data);
 
 void	renderer(t_data *data);
+int		detect_key_press(int key_code, t_data *data);
+void	update_vectors(t_player *player);
 
 #endif

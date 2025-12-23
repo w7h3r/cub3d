@@ -8,7 +8,8 @@ SRC=	main.c \
 		draw_utils.c \
 		init.c	\
 		draw_minimap.c \
-		renderer.c
+		renderer.c	\
+		hooks.c	\
 
 OBJ=$(SRC:.c=.o)
 LIBFT=lib/libft/libft.a

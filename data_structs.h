@@ -68,6 +68,24 @@ typedef struct	s_circle
 
 }	t_circle;
 
+typedef enum e_direction
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
+}	t_direction;
+
+typedef struct	s_key_state
+{
+	int	w_key;
+	int	a_key;
+	int	s_key;
+	int	d_key;
+	int	left_arrow;
+	int	right_arrow;
+}	t_key_state;
+
 typedef struct	s_player
 {
 	double	x_coor;
@@ -76,6 +94,8 @@ typedef struct	s_player
 	double	y_dir;
 	double	x_plane;
 	double	y_plane;
+	double	angle;
+	t_key_state	key_state;
 }	t_player;
 
 typedef struct	s_data

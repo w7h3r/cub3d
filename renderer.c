@@ -22,6 +22,7 @@ void	clear_image(t_data *data)
 
 void	renderer(t_data *data)
 {
+	clear_image(data);
 	draw_minimap(data);
 	draw_player(data);
 	mlx_put_image_to_window(data->mlx->mlx, data->mlx->win, data->mlx->img, 0, 0);

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "defines.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -23,6 +22,16 @@ void	err_exit_init(t_data *data, const char *err_msg)
 	free(data->mlx);
 	free(data->player);
 	exit(1);
+}
+
+void	init_keys(t_key_state *keys)
+{
+	keys->w_key = 0;
+	keys->a_key = 0;
+	keys->s_key = 0;
+	keys->d_key = 0;
+	keys->left_arrow = 0;
+	keys->right_arrow = 0;
 }
 
 void	init_data(t_data *data)
@@ -37,6 +46,7 @@ void	init_data(t_data *data)
 		err_exit_init(NULL, "Player memory allocation failed!\n");
 	}
 	init_player(data->player);
+	init_keys(&data->player->key_state);
 	data->mlx->mlx = NULL;
 	data->mlx->win = NULL;
 	data->mlx->addr = NULL;
@@ -106,4 +116,5 @@ void	init_player(t_player *player)
 	player->x_plane = 0;
 	player->y_plane = 0.66;
 	player->angle = 3.14 * 1.5;
+	update_vectors(player);
 }
