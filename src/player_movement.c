@@ -15,15 +15,15 @@
 
 int	move_forward(t_player *player)
 {
-	player->y_coor += cos(player->angle) * MOVEMENT_SPEED;
-	player->x_coor += sin(player->angle) * MOVEMENT_SPEED;
+	player->x_coor += player->x_dir * MOVEMENT_SPEED;
+	player->y_coor += player->y_dir * MOVEMENT_SPEED;
 	return (0);
 }
 
 int	move_backward(t_player *player)
 {
-	player->y_coor -= cos(player->angle) * MOVEMENT_SPEED;
-	player->x_coor -= sin(player->angle) * MOVEMENT_SPEED;
+	player->x_coor -= player->x_dir * MOVEMENT_SPEED;
+	player->y_coor -= player->y_dir * MOVEMENT_SPEED;
 	return (0);
 }
 
@@ -47,15 +47,15 @@ int	rotate_right(t_player *player)
 
 int	move_left(t_player *player)
 {
-	player->y_coor += cos(player->angle + M_PI / 2) * MOVEMENT_SPEED;
-	player->x_coor += sin(player->angle + M_PI / 2) * MOVEMENT_SPEED;
+	player->x_coor += player->y_dir * MOVEMENT_SPEED;
+	player->y_coor -= player->x_dir * MOVEMENT_SPEED;
 	return (0);
 }
 
 int	move_right(t_player *player)
 {
-	player->y_coor += cos(player->angle - M_PI / 2) * MOVEMENT_SPEED;
-	player->x_coor += sin(player->angle - M_PI / 2) * MOVEMENT_SPEED;
+	player->x_coor -= player->y_dir * MOVEMENT_SPEED;
+	player->y_coor += player->x_dir * MOVEMENT_SPEED;
 	return (0);
 }
 

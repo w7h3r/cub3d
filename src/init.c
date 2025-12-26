@@ -95,10 +95,7 @@ void	init_player(t_player *player)
 {
 	player->x_coor = 5.5;
 	player->y_coor = 5.5;
-	player->x_dir = -1;
-	player->y_dir = 0;
-	player->x_plane = 0;
-	player->y_plane = 0.66;
 	player->angle = 3.14 * 1.5;
 	init_keys(&player->key_state);
+	update_vectors(player);
 }

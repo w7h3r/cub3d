@@ -58,11 +58,10 @@ void	detect_determ_input(t_player *player)
 
 int	render_loop(t_data *data)
 {
-	if (!should_render())
-		return (0);
-	detect_determ_input(data->player);
-	if (is_player_moving(&data->player->key_state))
+	if (should_render())
 		renderer(data);
+	detect_determ_input(data->player);
+	// if (is_player_moving(&data->player->key_state))
 	return (0);
 }
 
