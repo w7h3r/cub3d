@@ -13,7 +13,7 @@
 #ifndef GAME_STRUCTS_H
 # define GAME_STRUCTS_H
 
-# include "lib/minilibx-linux/mlx.h"
+# include "../lib/minilibx-linux/mlx.h"
 
 typedef struct	s_mlx
 {

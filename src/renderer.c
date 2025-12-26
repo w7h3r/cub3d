@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   renderer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 14:02:19 by muokcan           #+#    #+#             */
-/*   Updated: 2025/12/23 14:10:39 by muokcan          ###   ########.fr       */
+/*   Created: 2025/12/17 18:52:32 by muokcan           #+#    #+#             */
+/*   Updated: 2025/12/23 13:45:27 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include <sys/time.h>
-#include <stddef.h>
+#include "../inc/cub3d.h"
+#include "../lib/libft/libft.h"
+#include "../lib/minilibx-linux/mlx.h"
 
-long long	get_time(void)
+void	clear_image(t_data *data)
 {
-	struct timeval	tv;
-
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+	ft_memcpy(data->mlx->addr, \
+		data->mlx->bg_addr, W_WI * W_HE * sizeof(int));
 }
 
-long long	time_diff(long long last_fr_t, long long curr_fr_t)
+void	renderer(t_data *data)
 {
-	return (curr_fr_t - last_fr_t);
+	clear_image(data);
+	draw_minimap(data);
+	draw_player(data);
+	mlx_put_image_to_window(data->mlx->mlx, data->mlx->win, data->mlx->img, 0, 0);
 }

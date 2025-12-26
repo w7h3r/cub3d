@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "data_structs.h"
-#include <math.h>
+#include "../inc/cub3d.h"
 
 static int	my_abs(int num)
 {

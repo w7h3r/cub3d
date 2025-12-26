@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./cub3d.h"
-#include "data_structs.h"
+#include "../inc/cub3d.h"
 
 #define	MAP_H 10
 #define	MAP_W 10

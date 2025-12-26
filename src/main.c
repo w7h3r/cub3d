@@ -10,11 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "cub3d.h"
-#include "data_structs.h"
-#include "lib/libft/libft.h"
-#include "lib/minilibx-linux/mlx.h"
+#include "../inc/cub3d.h"
+#include "../lib/libft/libft.h"
 
 void	hook_events(t_data *data)
 {

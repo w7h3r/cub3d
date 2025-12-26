@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prep_render.c                                      :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 12:53:15 by muokcan           #+#    #+#             */
-/*   Updated: 2025/12/23 12:53:57 by muokcan          ###   ########.fr       */
+/*   Created: 2025/12/23 14:02:19 by muokcan           #+#    #+#             */
+/*   Updated: 2025/12/23 14:10:39 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../inc/cub3d.h"
+#include <sys/time.h>
+#include <stddef.h>
 
-void	fill_background(t_data *data, int color)
+long long	get_time(void)
 {
-	int	*bg_addr;
-	int	total_pixels;
-	int	i;
+	struct timeval	tv;
 
-	bg_addr = (int *)data->mlx->bg_addr;
-	total_pixels = W_HE * W_WI;
-	i = 0;
-	while (i < total_pixels)
-	{
-		bg_addr[i] = color;
-		i++;
-	}
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
+
+long long	time_diff(long long last_fr_t, long long curr_fr_t)
+{
+	return (curr_fr_t - last_fr_t);
 }

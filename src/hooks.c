@@ -10,12 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "data_structs.h"
-#include "lib/minilibx-linux/mlx.h"
+#include "../inc/cub3d.h"
 #include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
 
 int	exit_program(t_data *data)
 {
