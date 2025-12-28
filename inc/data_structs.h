@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 17:03:13 by muokcan           #+#    #+#             */
-/*   Updated: 2025/12/17 17:46:26 by muokcan          ###   ########.fr       */
+/*   Updated: 2025/12/28 04:52:21 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ typedef struct	s_key_state
 	int	right_arrow;
 }	t_key_state;
 
+typedef struct	s_data	t_data;
+
 typedef struct	s_player
 {
 	double	x_coor;
@@ -96,12 +98,23 @@ typedef struct	s_player
 	double	y_plane;
 	double	angle;
 	t_key_state	key_state;
+	t_data		*data;
 }	t_player;
+
+typedef struct	s_map
+{
+	char	**map_grids;
+	int		width;
+	int		height;
+}	t_map;
 
 typedef struct	s_data
 {
 	t_mlx		*mlx;
 	t_player	*player;
+	t_map		*map;
+	double		delta_time;
+	long long	last_frame_time;
 }	t_data;
 
 #endif

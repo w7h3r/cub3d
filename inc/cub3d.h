@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 17:01:31 by muokcan           #+#    #+#             */
-/*   Updated: 2025/12/23 14:10:35 by muokcan          ###   ########.fr       */
+/*   Updated: 2025/12/28 04:55:48 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@ int		exit_program(t_data *data);
 //	*** TIME FUNCTIONS ***
 long long	get_time(void);
 long long	time_diff(long long last_fr_t, long long curr_fr_t);
+double	get_delta_time(long long *last_fr_time);;
+double	time_to_seconds(long long time_in_ms);
 
 //	*** RENDER ***
 void	renderer(t_data *data);
-int		should_render(void);
+int		should_render(t_data *data);
 int		is_player_moving(t_key_state *key_state);
 void	hook_events(t_data *data);
 int		render_loop(t_data *data);
@@ -54,5 +56,9 @@ int		rotate_right(t_player *player);
 int		move_left(t_player *player);
 int		move_right(t_player *player);
 
+// ***	SPACEHOLDER PARSER FUNCTIONS ***
+void	load_map(t_data *data, char *filename);
+void	parse_map(t_map *map, char *filename);
+void	find_player_start(t_data *data);
 
 #endif

@@ -28,7 +28,9 @@
 
 # define IMAGE_ERASE_COLOR 0x111111
 
-# define MOVEMENT_SPEED 0.1
-# define ROTATION_SPEED 0.1
+# define MOVEMENT_SPEED 1.5
+# define ROTATION_SPEED 3
+
+# define SECOND 1000
 
 #endif
