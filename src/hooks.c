@@ -21,7 +21,9 @@ int	exit_program(t_data *data)
 	mlx_destroy_image(data->mlx->mlx, data->mlx->bg_img);
 	mlx_destroy_window(data->mlx->mlx, data->mlx->win);
 	mlx_destroy_display(data->mlx->mlx);
+	free(data->player);
 	free(data->mlx->mlx);
+	free(data->mlx);
 	exit(0);
 }
 
