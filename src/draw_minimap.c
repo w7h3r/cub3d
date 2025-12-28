@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 16:44:17 by muokcan           #+#    #+#             */
-/*   Updated: 2025/12/17 18:12:11 by muokcan          ###   ########.fr       */
+/*   Updated: 2025/12/28 05:14:29 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@ static void	draw_grid(t_data *data)
 	int		i;
 
 	i = 0;
-	while (i < MAP_W)
+	while (i < data->map->width)
 	{
 		line.x0 = i * TILE_SIZE;
 		line.y0 = 0;
 		line.x1 = i * TILE_SIZE;
-		line.y1 = MAP_H * TILE_SIZE;
+		line.y1 = data->map->height * TILE_SIZE;
 		draw_line(data, line, 0x444444);
 		i++;
 	}
 	i = 0;
-	while (i < MAP_H)
+	while (i < data->map->height)
 	{
 		line.y0 = i * TILE_SIZE;
 		line.x0 = 0;
 		line.y1 = i * TILE_SIZE;
-		line.x1 = MAP_H * TILE_SIZE;
+		line.x1 = data->map->width * TILE_SIZE;
 		draw_line(data, line, 0x444444);
 		i++;
 	}
@@ -48,34 +48,21 @@ void	draw_minimap(t_data *data)
 	t_rect	tile;
 	int	x;
 	int	y;
-	int	mini_map[MAP_H][MAP_W] = 
-	{
-		{1,1,1,1,1,1,1,1,1,1},
-		{1,0,0,1,1,0,0,0,0,1},
-		{1,0,0,1,1,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,1,1,1},
-		{1,0,0,1,0,0,0,0,0,1},
-		{1,0,0,0,0,0,0,0,0,1},
-		{1,0,0,0,0,0,1,0,0,1},
-		{1,1,0,0,0,0,0,1,1,1},
-		{1,1,1,1,1,1,1,1,1,1},
-	};
 	tile.x = TILE_SIZE;
 	tile.y = TILE_SIZE;
 
 	y = 0;
-	while (y < MAP_H)
+	while (y < data->map->height)
 	{
 		x = 0;
-		while (x < MAP_W)
+		while (x < data->map->width)
 		{
 			tile.x_coor = x * TILE_SIZE;
 			tile.y_coor = y * TILE_SIZE;
 			
-			if (mini_map[y][x] == 1)
+			if (data->map->map_grids[y][x] == '1')
 				tile.color = 0xFFFFFF;
-			else
+			if (data->map->map_grids[y][x] == '0')
 				tile.color = 0x000000;
 			draw_rectangle(data, tile);
 			x++;

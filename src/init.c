@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 15:04:32 by muokcan           #+#    #+#             */
-/*   Updated: 2025/12/23 13:32:47 by muokcan          ###   ########.fr       */
+/*   Updated: 2025/12/28 04:52:32 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,19 @@ void	init_keys(t_key_state *keys)
 	keys->right_arrow = 0;
 }
 
+void	init_map(t_map **map)
+{
+	*map = malloc(sizeof(t_map));
+	if (!*map)
+	{
+		printf("Map memory allocation failed!\n");
+		exit(1);
+	}
+	(*map)->width = 0;
+	(*map)->height = 0;
+	(*map)->map_grids = NULL;
+}
+
 void	init_data(t_data *data)
 {
 	data->mlx = malloc(sizeof(t_mlx));
@@ -47,12 +60,16 @@ void	init_data(t_data *data)
 	}
 	init_player(data->player);
 	init_keys(&data->player->key_state);
+	init_map(&data->map);
+	data->player->data = data;
 	data->mlx->mlx = NULL;
 	data->mlx->win = NULL;
 	data->mlx->addr = NULL;
 	data->mlx->img = NULL;
 	data->mlx->bg_addr = NULL;
 	data->mlx->bg_img = NULL;
+	data->last_frame_time = 0;
+	data->delta_time = 0.0;
 }
 
 void	init_mlx(t_data *data)
