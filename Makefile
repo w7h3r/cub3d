@@ -13,6 +13,7 @@ SRC=	src/main.c				\
 		src/player_movement.c	\
 		src/prep_render.c		\
 		src/time.c				\
+		src/sh_parser.c			\
 
 OBJ=$(SRC:.c=.o)
 LIBFT=lib/libft/libft.a
