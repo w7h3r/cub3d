@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 14:58:50 by muokcan           #+#    #+#             */
-/*   Updated: 2025/12/23 14:23:47 by muokcan          ###   ########.fr       */
+/*   Updated: 2025/12/28 05:04:19 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ void	hook_events(t_data *data)
 	mlx_hook(data->mlx->win, 17, 0, exit_program, data);
 }
 
-int	should_render(void)
+int	should_render(t_data *data)
 {
-	static long long	last_frame_time = 0;
-	long long			curr_frame_time;
-	long long			delta_time;
+	long long	curr_time;
+	long long	delta;
 
-	curr_frame_time = get_time();
-	delta_time = time_diff(last_frame_time, curr_frame_time);
-	if (delta_time < 16)
+	curr_time = get_time();
+	delta = time_diff(data->last_frame_time, curr_time);
+	if (delta < 16)
 		return (0);
-	last_frame_time = curr_frame_time;
+	data->last_frame_time = curr_time;
+	data->delta_time = time_to_seconds(delta);
 	return (1);
 }
 
@@ -56,20 +56,45 @@ void	detect_determ_input(t_player *player)
 		rotate_right(player);
 }
 
-int	render_loop(t_data *data)
+int	fps_debug(void)
 {
-	if (should_render())
-		renderer(data);
-	detect_determ_input(data->player);
-	// if (is_player_moving(&data->player->key_state))
+	static int	frame_count = 0;
+	static long long	last_print = 0;
+
+	frame_count++;
+	long long	current_time = get_time();
+	if (time_diff(last_print, current_time) >= SECOND)
+	{
+		#include <stdio.h>
+		printf("FPS: %d\n", frame_count);
+		frame_count = 0;
+		last_print = current_time;
+	}
 	return (0);
 }
 
-int main(void)
+int	render_loop(t_data *data)
+{
+	if (should_render(data))
+	{
+		detect_determ_input(data->player);
+		renderer(data);
+		fps_debug();
+		return (0);
+	}
+	return (1);
+}
+
+int main(int argc, char **argv)
 {
 	t_data	data;
+	if (argc != 2)
+	{
+		return (1);
+	}
 
 	init_data(&data);
+	load_map(&data, argv[1]);
 	init_mlx(&data);
 	hook_events(&data);
 	renderer(&data);
