@@ -13,6 +13,21 @@
 #include "../inc/cub3d.h"
 #include <math.h>
 
+void	init_ray_vars(t_player *player, t_ray *ray, int x)
+{
+	ray->cam_x = 2 * x / (double)(W_WI) - 1;
+	ray->ray_dir_x = player->x_dir + player->x_plane * ray->cam_x;
+	ray->ray_dir_y = player->y_dir + player->y_plane * ray->cam_x;
+	ray->map_x = (int)(player->x_coor);
+	ray->map_y = (int)(player->y_coor);
+}
+
+void	init_dda_vars(t_ray *ray)
+{
+
+}
+
 void	cast_rays(t_data *data)
 {
+
 }

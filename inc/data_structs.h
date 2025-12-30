@@ -101,6 +101,33 @@ typedef struct	s_player
 	t_data		*data;
 }	t_player;
 
+typedef struct s_dda
+{
+	double side_dist_x;
+	double side_dist_y;
+	double delta_dist_x;
+	double delta_dist_y;
+	double perp_wall_dist;
+	int	step_x;
+	int	step_y;
+	int	did_hit_wall;
+	int	side;
+}	t_dda;
+
+typedef struct s_ray
+{
+	double cam_x;
+	double ray_dir_x;
+	double ray_dir_y;
+	int	map_x;
+	int	map_y;
+	t_dda	dda;
+	double wall_x;
+	int	line_height;
+	int	draw_start;
+	int	draw_end;
+}	t_ray;
+
 typedef struct	s_map
 {
 	char	**map_grids;
@@ -113,6 +140,7 @@ typedef struct	s_data
 	t_mlx		*mlx;
 	t_player	*player;
 	t_map		*map;
+	t_ray		*ray;
 	double		delta_time;
 	long long	last_frame_time;
 }	t_data;

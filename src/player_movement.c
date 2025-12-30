@@ -13,6 +13,16 @@
 #include "../inc/cub3d.h"
 #include <math.h>
 
+// int	is_wall(t_player *player)
+// {
+//
+// }
+//
+// int	can_move(t_player *player)
+// {
+//
+// }
+
 int	move_forward(t_player *player)
 {
 	player->x_coor += player->x_dir * MOVEMENT_SPEED * player->data->delta_time;
