@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 14:58:50 by muokcan           #+#    #+#             */
-/*   Updated: 2025/12/28 05:04:19 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/01/12 22:08:26 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int main(int argc, char **argv)
 	renderer(&data);
 	mlx_loop_hook(data.mlx->mlx, render_loop, &data);
 	mlx_loop(data.mlx->mlx);
+	free_all_mem();
 	return (0);
 }
 

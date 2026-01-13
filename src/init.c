@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 15:04:32 by muokcan           #+#    #+#             */
-/*   Updated: 2025/12/28 04:52:32 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/01/12 21:39:40 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	init_keys(t_key_state *keys)
 
 void	init_map(t_map **map)
 {
-	*map = malloc(sizeof(t_map));
+	*map = reg_alloc(sizeof(t_map));
 	if (!*map)
 	{
 		printf("Map memory allocation failed!\n");
@@ -49,10 +49,10 @@ void	init_map(t_map **map)
 
 void	init_data(t_data *data)
 {
-	data->mlx = malloc(sizeof(t_mlx));
+	data->mlx = reg_alloc(sizeof(t_mlx));
 	if (!data->mlx)
 		err_exit_init(NULL, "MLX memory allocation failed!\n");
-	data->player = malloc(sizeof(t_player));
+	data->player = reg_alloc(sizeof(t_player));
 	if (!data->player)
 	{
 		free(data->mlx);
