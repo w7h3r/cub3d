@@ -16,7 +16,7 @@
 
 static t_mem_manager	*get_mem(void)
 {
-	static t_mem_manager	mem_manager = {NULL, NULL, 0};
+	static t_mem_manager	mem_manager = {NULL, NULL, 0, 0};
 
 	return (&mem_manager);
 }
@@ -47,6 +47,7 @@ void	*reg_alloc(size_t size)
 		mem_manager->tail->next = new_mem;
 		mem_manager->tail = new_mem;
 	}
+	mem_manager->total_allocated_size += size;
 	mem_manager->allocated_blocks++;
 	return (new_mem->mem);
 }
@@ -69,6 +70,7 @@ void	free_all_mem(void)
 	mem_manager->head = NULL;
 	mem_manager->tail = NULL;
 	mem_manager->allocated_blocks = 0;
+	mem_manager->total_allocated_size = 0;
 }
 
 // void	print_mem_status(void)
