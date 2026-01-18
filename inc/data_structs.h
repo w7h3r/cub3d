@@ -6,13 +6,14 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 17:03:13 by muokcan           #+#    #+#             */
-/*   Updated: 2025/12/28 04:52:21 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/01/12 21:29:44 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_STRUCTS_H
 # define GAME_STRUCTS_H
 
+# include <unistd.h>
 # include "../lib/minilibx-linux/mlx.h"
 
 typedef struct	s_mlx
@@ -133,6 +134,8 @@ typedef struct	s_map
 	char	**map_grids;
 	int		width;
 	int		height;
+	int		floor_color;
+	int		ceiling_color;
 }	t_map;
 
 typedef struct	s_data
@@ -144,5 +147,19 @@ typedef struct	s_data
 	double		delta_time;
 	long long	last_frame_time;
 }	t_data;
+
+typedef struct	s_all_mem
+{
+	void				*mem;
+	struct s_all_mem	*next;
+}	t_all_mem;
+
+typedef struct	s_mem_manager
+{
+	t_all_mem	*head;
+	t_all_mem	*tail;
+	size_t		allocated_blocks;
+	size_t		total_allocated_size;
+}	t_mem_manager;
 
 #endif

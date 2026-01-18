@@ -14,8 +14,8 @@
 # define DEFINES_H
 
 # define M_TILE_SIZE 128
-# define W_HE 900
-# define W_WI 1200
+# define W_HE 700
+# define W_WI 900
 
 # define KEY_A 97
 # define KEY_S 115

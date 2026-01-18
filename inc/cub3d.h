@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 17:01:31 by muokcan           #+#    #+#             */
-/*   Updated: 2025/12/28 04:55:48 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/01/12 22:08:18 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	detect_determ_input(t_player *player);
 void	update_vectors(t_player *player);
 int		key_press(int key_code, t_data *data);
 int		key_release(int key_code, t_data *data);
+void	cast_rays(t_data *data);
 
 //	*** PLAYER MOVEMENT ***
 int		move_forward(t_player *player);
@@ -60,5 +61,9 @@ int		move_right(t_player *player);
 void	load_map(t_data *data, char *filename);
 void	parse_map(t_map *map, char *filename);
 void	find_player_start(t_data *data);
+
+// *** MEMORY MANAGEMENT FUNCTIONS ***
+void	*reg_alloc(size_t size);
+void	free_all_mem(void);
 
 #endif
