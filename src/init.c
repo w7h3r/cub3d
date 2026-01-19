@@ -45,8 +45,8 @@ void	init_map(t_map **map)
 	(*map)->width = 0;
 	(*map)->height = 0;
 	(*map)->map_grids = NULL;
-	(*map)->floor_color = -1;
-	(*map)->ceiling_color = -1;
+	(*map)->floor_color = 0xF01A1A;
+	(*map)->ceiling_color = 0x00FFFF;
 }
 
 void	init_data(t_data *data)

@@ -15,6 +15,7 @@ SRC=	src/main.c				\
 		src/time.c				\
 		src/sh_parser.c			\
 		src/mem_alloc.c			\
+		src/rays.c				\
 
 OBJ=$(SRC:.c=.o)
 LIBFT=lib/libft/libft.a

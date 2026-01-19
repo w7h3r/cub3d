@@ -33,4 +33,8 @@
 
 # define SECOND 1000
 
+# define DDA_IT_LIMIT 100
+
+# define PI 3.14
+
 #endif

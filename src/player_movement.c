@@ -57,14 +57,14 @@ int	rotate_right(t_player *player)
 
 int	move_left(t_player *player)
 {
-	player->x_coor += player->y_dir * MOVEMENT_SPEED * player->data->delta_time;
-	player->y_coor -= player->x_dir * MOVEMENT_SPEED * player->data->delta_time;
+	player->x_coor -= player->x_plane * MOVEMENT_SPEED * player->data->delta_time;
+	player->y_coor -= player->y_plane * MOVEMENT_SPEED * player->data->delta_time;
 	return (0);
 }
 
 int	move_right(t_player *player)
 {
-	player->x_coor -= player->y_dir * MOVEMENT_SPEED * player->data->delta_time;
-	player->y_coor += player->x_dir * MOVEMENT_SPEED * player->data->delta_time;
+	player->x_coor += player->x_plane * MOVEMENT_SPEED * player->data->delta_time;
+	player->y_coor += player->y_plane * MOVEMENT_SPEED * player->data->delta_time;
 	return (0);
 }

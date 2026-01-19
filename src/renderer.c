@@ -20,10 +20,45 @@ void	clear_image(t_data *data)
 		data->mlx->bg_addr, W_WI * W_HE * sizeof(int));
 }
 
+void	fill_floor_ceiling(t_data *data)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < W_HE / 2)
+	{
+		x = 0;
+		while (x < W_WI)
+		{
+			put_pixel_to_img(data, x, y, data->map->ceiling_color);
+			x++;
+		}
+		y++;
+	}
+	while (y < W_HE)
+	{
+		x = 0;
+		while (x < W_WI)
+		{
+			put_pixel_to_img(data, x, y, data->map->floor_color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	render_scene_frame(t_data *data)
+{
+	fill_floor_ceiling(data);
+	cast_rays(data);
+}
+
 void	renderer(t_data *data)
 {
-	clear_image(data);
-	draw_minimap(data);
-	draw_player(data);
+	// clear_image(data);
+	// draw_minimap(data);
+	// draw_player(data);
+	render_scene_frame(data);
 	mlx_put_image_to_window(data->mlx->mlx, data->mlx->win, data->mlx->img, 0, 0);
 }

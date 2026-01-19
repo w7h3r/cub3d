@@ -98,6 +98,7 @@ typedef struct	s_player
 	double	x_plane;
 	double	y_plane;
 	double	angle;
+	t_direction	player_dir;
 	t_key_state	key_state;
 	t_data		*data;
 }	t_player;
