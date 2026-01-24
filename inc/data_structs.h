@@ -130,6 +130,19 @@ typedef struct s_ray
 	int	draw_end;
 }	t_ray;
 
+
+typedef struct	s_texture
+{
+	void	*img;
+	char	*addr;
+	int		width;
+	int		height;
+	int		bitbp;
+	int		l_len;
+	int		endian;
+	char	*path;
+}	t_texture;
+
 typedef struct	s_map
 {
 	char	**map_grids;
@@ -137,6 +150,10 @@ typedef struct	s_map
 	int		height;
 	int		floor_color;
 	int		ceiling_color;
+	t_texture	texture_n;
+	t_texture	texture_s;
+	t_texture	texture_e;
+	t_texture	texture_w;
 }	t_map;
 
 typedef struct	s_data

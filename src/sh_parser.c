@@ -25,7 +25,7 @@ char	*simple_gnl(int fd)
 	}
 	
 	i = 0;
-	line = malloc(1000);
+	line = reg_alloc(1000);
 	while (pos < read_size && buffer[pos] != '\n')
 		line[i++] = buffer[pos++];
 	line[i] = '\0';
@@ -83,8 +83,6 @@ int	count_map_lines(char *filename)
 		}
 		else if (map_started)
 			break;  // Map bitti
-		
-		free(line);
 	}
 	close(fd);
 	return (count);
@@ -113,7 +111,6 @@ int	get_map_width(char *filename)
 			if (len > max_width)
 				max_width = len;
 		}
-		free(line);
 	}
 	close(fd);
 	return (max_width);
@@ -134,9 +131,9 @@ void	parse_map(t_map *map, char *filename)
 	printf("Map size: %d x %d\n", map->width, map->height);
 	
 	// Memory allocate
-	map->map_grids = malloc(sizeof(char *) * map->height);
+	map->map_grids = reg_alloc(sizeof(char *) * map->height);
 	for (int i = 0; i < map->height; i++)
-		map->map_grids[i] = malloc(map->width + 1);
+		map->map_grids[i] = reg_alloc(map->width + 1);
 	
 	// Dosyayı tekrar aç ve oku
 	fd = open(filename, O_RDONLY);
@@ -167,7 +164,6 @@ void	parse_map(t_map *map, char *filename)
 			map->map_grids[y][x] = '\0';
 			y++;
 		}
-		free(line);
 	}
 	close(fd);
 }

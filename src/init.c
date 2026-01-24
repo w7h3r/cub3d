@@ -19,9 +19,33 @@ void	err_exit_init(t_data *data, const char *err_msg)
 {
 	(void)data;
 	printf("%s\n", err_msg);
-	free(data->mlx);
-	free(data->player);
-	exit(1);
+	exit_program(data);
+}
+
+void	init_texture(t_data *data, t_texture *texture)
+{
+	texture->width = 0;
+	texture->height = 0;
+	texture->img = mlx_xpm_file_to_image(data->mlx->mlx, \
+			texture->path, &texture->width, &texture->height);
+	if (!texture->img)
+		err_exit_init(data, "Error: Can't load texture image");
+	texture->addr = mlx_get_data_addr(texture->img, &texture->bitbp, \
+			&texture->l_len, &texture->endian);
+	if (!texture->addr)
+		err_exit_init(data, "Error: Can't get texture image address");
+}
+
+void	init_all_textures(t_data *data)
+{
+	data->map->texture_n.path = "texture/keezgi.xpm";
+	data->map->texture_w.path = "texture/muokcan.xpm";
+	data->map->texture_s.path = "texture/keezgi.xpm";
+	data->map->texture_e.path = "texture/muokcan.xpm";
+	init_texture(data, &data->map->texture_n);
+	init_texture(data, &data->map->texture_s);
+	init_texture(data, &data->map->texture_e);
+	init_texture(data, &data->map->texture_w);
 }
 
 void	init_keys(t_key_state *keys)
@@ -72,6 +96,10 @@ void	init_data(t_data *data)
 	data->mlx->bg_img = NULL;
 	data->last_frame_time = 0;
 	data->delta_time = 0.0;
+	data->ray = NULL;
+	data->ray = reg_alloc(sizeof(t_ray) * W_WI);
+	if (!data->ray)
+		err_exit_init(data, "Ray memory allocation failed!\n");
 }
 
 void	init_mlx(t_data *data)

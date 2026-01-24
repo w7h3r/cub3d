@@ -15,15 +15,13 @@
 
 int	exit_program(t_data *data)
 {
-	(void)data;
-	// clean_data(data);
 	mlx_destroy_image(data->mlx->mlx, data->mlx->img);
 	mlx_destroy_image(data->mlx->mlx, data->mlx->bg_img);
 	mlx_destroy_window(data->mlx->mlx, data->mlx->win);
 	mlx_destroy_display(data->mlx->mlx);
-	free(data->player);
-	free(data->mlx->mlx);
-	free(data->mlx);
+	if (data->mlx->mlx)
+		free(data->mlx->mlx);
+	free_all_mem();
 	exit(0);
 }
 

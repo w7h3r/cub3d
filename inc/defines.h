@@ -13,9 +13,8 @@
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define M_TILE_SIZE 128
-# define W_HE 700
-# define W_WI 900
+# define W_HE 1080
+# define W_WI 1920
 
 # define KEY_A 97
 # define KEY_S 115
@@ -28,8 +27,8 @@
 
 # define IMAGE_ERASE_COLOR 0x111111
 
-# define MOVEMENT_SPEED 1.5
-# define ROTATION_SPEED 3
+# define MOVEMENT_SPEED 2.5
+# define ROTATION_SPEED 2.5
 
 # define SECOND 1000
 

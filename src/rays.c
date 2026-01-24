@@ -15,7 +15,7 @@
 
 void	init_ray_vars(t_player *player, t_ray *ray, int x)
 {
-	ray->cam_x = 2 * x / (double)(W_WI) - 1;
+	ray->cam_x = 2.0 * x / (double)(W_WI) - 1.0;
 	ray->ray_dir_x = player->x_dir + player->x_plane * ray->cam_x;
 	ray->ray_dir_y = player->y_dir + player->y_plane * ray->cam_x;
 	ray->map_x = (int)(player->x_coor);
@@ -105,24 +105,81 @@ void	dda_algorithm(t_data *data, t_ray *ray)
 		ray->dda.perp_wall_dist = 0.0001;
 }
 
-void	render_wall_rectangle(t_data *data, t_ray *ray, int x)
+/*  BURAYI EL YORDAMI YAPACAIM SONRA  */
+
+t_texture *decide_texture_side(t_data *data, t_ray *ray)
+{
+	if (ray->dda.side == 0)
+	{
+		if (ray->ray_dir_x > 0)
+			return (&data->map->texture_e);
+		else
+			return (&data->map->texture_w);
+	}
+	else
+	{
+		if (ray->ray_dir_y > 0)
+			return (&data->map->texture_s);
+		else
+			return (&data->map->texture_n);
+	}
+}
+
+int	get_pixel_image(t_texture *texture, int tex_x, int tex_y)
+{
+	return (*((unsigned int *)(texture->addr + (tex_y * texture->l_len + tex_x * (texture->bitbp / 8)))));
+}
+
+double	calculate_wall_x(t_ray *ray, t_player *player);
+
+int	prepare_pixel(t_texture texture, int wall_start, double wall_x, int tex_y, int line_height)
+{
+	double			step;
+	double			tex_pos;
+
+	step = 1.0 * texture.height / (line_height);
+	tex_pos = (wall_start - 1.0 * W_HE / 2 + 1.0 * (line_height) / 2) * step;
+	int		tex_x = (int)(wall_x * (double)(texture.width));
+	tex_pos += step;
+	return (get_pixel_image(&texture, tex_x, tex_pos + (tex_y - (int)wall_start) * step));
+}
+
+void	render_wall_rectangle(t_data *data, t_ray *ray, int x, double wall_x)
 {
 	int	wall_height;
 	int	wall_start;
 	int	wall_end;
+	int	start_pixel;
+	int	the_key_of_everything;
+	int color;
 
-	wall_height = W_HE / ray->dda.perp_wall_dist;
+	wall_height = (int)((double)W_HE / ray->dda.perp_wall_dist);
 	wall_start = (W_HE - wall_height) / 2;
 	wall_end = (W_HE + wall_height) / 2;
+	start_pixel = wall_start;
 	if (wall_start < 0)
 		wall_start = 0;
 	if (wall_end >= W_HE)
 		wall_end = W_HE;
-	while (wall_start < wall_end)
+	the_key_of_everything = wall_start;
+	while (the_key_of_everything < wall_end)
 	{
-		put_pixel_to_img(data, x, wall_start, 0x222222);
-		wall_start++;
+		color = prepare_pixel(*decide_texture_side(data, ray), start_pixel, wall_x, the_key_of_everything, wall_height);
+		put_pixel_to_img(data, x, the_key_of_everything, color);
+		the_key_of_everything++;
 	}
+}
+
+double	calculate_wall_x(t_ray *ray, t_player *player)
+{
+	double wall_x;
+
+	if (ray->dda.side == 0)
+		wall_x = player->y_coor + ray->dda.perp_wall_dist * ray->ray_dir_y;
+	else
+		wall_x = player->x_coor + ray->dda.perp_wall_dist * ray->ray_dir_x;
+	wall_x -= floor(wall_x);
+	return (wall_x);
 }
 
 void	cast_rays(t_data *data)
@@ -136,7 +193,7 @@ void	cast_rays(t_data *data)
 		init_ray_vars(data->player, &ray, x);
 		init_dda_vars(&ray, data->player);
 		dda_algorithm(data, &ray);
-		render_wall_rectangle(data, &ray, x);
+		render_wall_rectangle(data, &ray, x, calculate_wall_x(&ray, data->player));
 		x++;
 	}
 }

@@ -56,6 +56,7 @@ void	detect_determ_input(t_player *player)
 		rotate_right(player);
 }
 
+#include <stdio.h>
 int	fps_debug(void)
 {
 	static int	frame_count = 0;
@@ -65,7 +66,6 @@ int	fps_debug(void)
 	long long	current_time = get_time();
 	if (time_diff(last_print, current_time) >= SECOND)
 	{
-		#include <stdio.h>
 		printf("FPS: %d\n", frame_count);
 		frame_count = 0;
 		last_print = current_time;
@@ -96,11 +96,12 @@ int main(int argc, char **argv)
 	init_data(&data);
 	load_map(&data, argv[1]);
 	init_mlx(&data);
+	init_all_textures(&data);
 	hook_events(&data);
 	renderer(&data);
 	mlx_loop_hook(data.mlx->mlx, render_loop, &data);
 	mlx_loop(data.mlx->mlx);
-	free_all_mem();
+	exit_program(&data);
 	return (0);
 }
 

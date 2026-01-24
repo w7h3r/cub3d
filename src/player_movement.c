@@ -15,25 +15,44 @@
 
 // int	is_wall(t_player *player)
 // {
-//
 // }
 //
 // int	can_move(t_player *player)
 // {
-//
+// 	if (is_wall(player))
+// 		return (1);
+// 	return (0);
 // }
 
 int	move_forward(t_player *player)
 {
-	player->x_coor += player->x_dir * MOVEMENT_SPEED * player->data->delta_time;
-	player->y_coor += player->y_dir * MOVEMENT_SPEED * player->data->delta_time;
+	double new_x;
+	double new_y;
+
+	new_x = player->x_coor;
+	new_y = player->y_coor;
+	new_x += player->x_dir * MOVEMENT_SPEED * player->data->delta_time;
+	new_y += player->y_dir * MOVEMENT_SPEED * player->data->delta_time;
+	if (player->data->map->map_grids[(int)(player->y_coor)][(int)(new_x)] != '1')
+		player->x_coor = new_x;
+	if (player->data->map->map_grids[(int)(new_y)][(int)(player->x_coor)] != '1')
+		player->y_coor = new_y;
 	return (0);
 }
 
 int	move_backward(t_player *player)
 {
-	player->x_coor -= player->x_dir * MOVEMENT_SPEED * player->data->delta_time;
-	player->y_coor -= player->y_dir * MOVEMENT_SPEED * player->data->delta_time;
+	double new_x;
+	double new_y;
+
+	new_x = player->x_coor;
+	new_y = player->y_coor;
+	new_x -= player->x_dir * MOVEMENT_SPEED * player->data->delta_time;
+	new_y -= player->y_dir * MOVEMENT_SPEED * player->data->delta_time;
+	if (player->data->map->map_grids[(int)(player->y_coor)][(int)(new_x)] != '1')
+		player->x_coor = new_x;
+	if (player->data->map->map_grids[(int)(new_y)][(int)(player->x_coor)] != '1')
+		player->y_coor = new_y;
 	return (0);
 }
 
@@ -57,14 +76,32 @@ int	rotate_right(t_player *player)
 
 int	move_left(t_player *player)
 {
-	player->x_coor -= player->x_plane * MOVEMENT_SPEED * player->data->delta_time;
-	player->y_coor -= player->y_plane * MOVEMENT_SPEED * player->data->delta_time;
+	double new_x;
+	double new_y;
+
+	new_x = player->x_coor;
+	new_y = player->y_coor;
+	new_x -= player->x_plane * MOVEMENT_SPEED * player->data->delta_time;
+	new_y -= player->y_plane * MOVEMENT_SPEED * player->data->delta_time;
+	if (player->data->map->map_grids[(int)(player->y_coor)][(int)(new_x)] != '1')
+		player->x_coor = new_x;
+	if (player->data->map->map_grids[(int)(new_y)][(int)(player->x_coor)] != '1')
+		player->y_coor = new_y;
 	return (0);
 }
 
 int	move_right(t_player *player)
 {
-	player->x_coor += player->x_plane * MOVEMENT_SPEED * player->data->delta_time;
-	player->y_coor += player->y_plane * MOVEMENT_SPEED * player->data->delta_time;
+	double new_x;
+	double new_y;
+
+	new_x = player->x_coor;
+	new_y = player->y_coor;
+	new_x += player->x_plane * MOVEMENT_SPEED * player->data->delta_time;
+	new_y += player->y_plane * MOVEMENT_SPEED * player->data->delta_time;
+	if (player->data->map->map_grids[(int)(player->y_coor)][(int)(new_x)] != '1')
+		player->x_coor = new_x;
+	if (player->data->map->map_grids[(int)(new_y)][(int)(player->x_coor)] != '1')
+		player->y_coor = new_y;
 	return (0);
 }

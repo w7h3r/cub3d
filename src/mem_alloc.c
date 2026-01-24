@@ -69,6 +69,8 @@ void	free_all_mem(void)
 	}
 	mem_manager->head = NULL;
 	mem_manager->tail = NULL;
+	printf("Freed all allocated memory blocks: %zu\n", mem_manager->allocated_blocks);
+	printf("Total freed memory size: %zu bytes\n", mem_manager->total_allocated_size);
 	mem_manager->allocated_blocks = 0;
 	mem_manager->total_allocated_size = 0;
 }

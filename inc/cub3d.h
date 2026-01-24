@@ -30,6 +30,7 @@ void	init_mlx(t_data *data);
 void	init_data(t_data *data);
 void	init_player(t_player *player);
 int		exit_program(t_data *data);
+void	init_all_textures(t_data *data);
 
 //	*** TIME FUNCTIONS ***
 long long	get_time(void);
@@ -56,6 +57,7 @@ int		rotate_left(t_player *player);
 int		rotate_right(t_player *player);
 int		move_left(t_player *player);
 int		move_right(t_player *player);
+// int		can_move(t_player *player, int new_x, int new_y);
 
 // ***	SPACEHOLDER PARSER FUNCTIONS ***
 void	load_map(t_data *data, char *filename);
