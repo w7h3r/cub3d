@@ -13,8 +13,8 @@
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# define W_HE 1080
-# define W_WI 1920
+# define W_HE 720
+# define W_WI 1280
 
 # define KEY_A 97
 # define KEY_S 115
