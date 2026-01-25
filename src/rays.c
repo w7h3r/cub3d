@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 23:53:27 by muokcan           #+#    #+#             */
-/*   Updated: 2025/12/28 06:41:35 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/01/25 19:52:23 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,21 +112,25 @@ t_texture *decide_texture_side(t_data *data, t_ray *ray)
 	if (ray->dda.side == 0)
 	{
 		if (ray->ray_dir_x > 0)
-			return (&data->map->texture_e);
-		else
 			return (&data->map->texture_w);
+		else
+			return (&data->map->texture_e);
 	}
 	else
 	{
 		if (ray->ray_dir_y > 0)
-			return (&data->map->texture_s);
-		else
 			return (&data->map->texture_n);
+		else
+			return (&data->map->texture_s);
 	}
 }
 
 int	get_pixel_image(t_texture *texture, int tex_x, int tex_y)
 {
+	if (!texture || !texture->addr)
+		return (0);
+	if (tex_x < 0 || tex_x >= texture->width || tex_y < 0 || tex_y >= texture->height)
+		return (0);
 	return (*((unsigned int *)(texture->addr + (tex_y * texture->l_len + tex_x * (texture->bitbp / 8)))));
 }
 

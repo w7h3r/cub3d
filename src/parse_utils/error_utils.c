@@ -1,0 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: keezgi <keezgi@student.42kocaeli.com.tr    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/19 12:35:15 by keezgi            #+#    #+#             */
+/*   Updated: 2026/01/25 17:27:55 by muokcan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../inc/parser.h"
+
+void    parser_print_err(char *str)
+{
+    parser_putstr_err("Error");
+    parser_putstr_err(str);
+}
+
+void    parser_putstr_err(char *str)
+{
+    int i;
+    i = 0;
+
+    while (str[i])
+    {
+        write(2 , &str[i] , 1);
+        i++;
+    }
+    write(2 , "\n" , 1);
+}

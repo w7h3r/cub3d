@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 18:52:32 by muokcan           #+#    #+#             */
-/*   Updated: 2025/12/23 13:45:27 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/01/25 17:12:17 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,18 @@ void	render_scene_frame(t_data *data)
 
 void	renderer(t_data *data)
 {
-	// clear_image(data);
-	// draw_minimap(data);
-	// draw_player(data);
 	render_scene_frame(data);
 	mlx_put_image_to_window(data->mlx->mlx, data->mlx->win, data->mlx->img, 0, 0);
+}
+
+int	render_loop(t_data *data)
+{
+	if (should_render(data))
+	{
+		detect_determ_input(data->player);
+		renderer(data);
+		// fps_debug();
+		return (0);
+	}
+	return (1);
 }

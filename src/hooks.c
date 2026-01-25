@@ -15,16 +15,25 @@
 
 int	exit_program(t_data *data)
 {
-	mlx_destroy_image(data->mlx->mlx, data->mlx->img);
-	mlx_destroy_image(data->mlx->mlx, data->mlx->bg_img);
-	mlx_destroy_image(data->mlx->mlx, data->map->texture_n.img);
-	mlx_destroy_image(data->mlx->mlx, data->map->texture_s.img);
-	mlx_destroy_image(data->mlx->mlx, data->map->texture_e.img);
-	mlx_destroy_image(data->mlx->mlx, data->map->texture_w.img);
-	mlx_destroy_window(data->mlx->mlx, data->mlx->win);
-	mlx_destroy_display(data->mlx->mlx);
+	if (data->mlx->img)
+		mlx_destroy_image(data->mlx->mlx, data->mlx->img);
+	if (data->mlx->bg_img)
+		mlx_destroy_image(data->mlx->mlx, data->mlx->bg_img);
+	if (data->map->texture_n.img)
+		mlx_destroy_image(data->mlx->mlx, data->map->texture_n.img);
+	if (data->map->texture_s.img)
+		mlx_destroy_image(data->mlx->mlx, data->map->texture_s.img);
+	if (data->map->texture_e.img)
+		mlx_destroy_image(data->mlx->mlx, data->map->texture_e.img);
+	if (data->map->texture_w.img)
+		mlx_destroy_image(data->mlx->mlx, data->map->texture_w.img);
+	if (data->mlx->win)
+		mlx_destroy_window(data->mlx->mlx, data->mlx->win);
 	if (data->mlx->mlx)
+	{
+		mlx_destroy_display(data->mlx->mlx);
 		free(data->mlx->mlx);
+	}
 	free_all_mem();
 	exit(0);
 }

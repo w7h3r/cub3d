@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 15:04:32 by muokcan           #+#    #+#             */
-/*   Updated: 2026/01/12 21:39:40 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/01/25 20:06:32 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ void	err_exit_init(t_data *data, const char *err_msg)
 	exit_program(data);
 }
 
+void	init_game_struct(t_game *game)
+{
+	game->map_width = 0;
+	game->map_height = 0;
+	game->matrix_map = NULL;
+	game->tmp = NULL;
+}
+
 void	init_texture(t_data *data, t_texture *texture)
 {
 	texture->width = 0;
@@ -29,7 +37,10 @@ void	init_texture(t_data *data, t_texture *texture)
 	texture->img = mlx_xpm_file_to_image(data->mlx->mlx, \
 			texture->path, &texture->width, &texture->height);
 	if (!texture->img)
+	{
+		printf("Failed path: [%s]\n", texture->path);
 		err_exit_init(data, "Error: Can't load texture image");
+	}
 	texture->addr = mlx_get_data_addr(texture->img, &texture->bitbp, \
 			&texture->l_len, &texture->endian);
 	if (!texture->addr)
@@ -38,10 +49,6 @@ void	init_texture(t_data *data, t_texture *texture)
 
 void	init_all_textures(t_data *data)
 {
-	data->map->texture_n.path = "texture/keezgi.xpm";
-	data->map->texture_w.path = "texture/muokcan.xpm";
-	data->map->texture_s.path = "texture/keezgi.xpm";
-	data->map->texture_e.path = "texture/muokcan.xpm";
 	init_texture(data, &data->map->texture_n);
 	init_texture(data, &data->map->texture_s);
 	init_texture(data, &data->map->texture_e);
@@ -73,7 +80,7 @@ void	init_map(t_map **map)
 	(*map)->ceiling_color = 0x00FFFF;
 }
 
-void	init_data(t_data *data)
+void	init_data(t_data *data, t_game *game)
 {
 	data->mlx = reg_alloc(sizeof(t_mlx));
 	if (!data->mlx)
@@ -84,7 +91,7 @@ void	init_data(t_data *data)
 		free(data->mlx);
 		err_exit_init(NULL, "Player memory allocation failed!\n");
 	}
-	init_player(data->player);
+	init_player(data->player, game);
 	init_keys(&data->player->key_state);
 	init_map(&data->map);
 	data->player->data = data;
@@ -138,11 +145,18 @@ void	update_vectors(t_player *player)
 	player->y_plane = cos(player->angle) * 0.66;
 }
 
-void	init_player(t_player *player)
+void	init_player(t_player *player, t_game *game)
 {
-	player->x_coor = 5.5;
-	player->y_coor = 5.5;
-	player->angle = 3.14 * 1.5;
+	player->x_coor = game->player_x + 0.5;
+	player->y_coor = game->player_y + 0.5;
+	if (game->player_dir == 'N')
+		player->angle = 3.14 * 1.5;
+	else if (game->player_dir == 'S')
+		player->angle = 3.14 * 0.5;
+	else if (game->player_dir == 'E')
+		player->angle = 0;
+	else if (game->player_dir == 'W')
+		player->angle = 3.14;
 	init_keys(&player->key_state);
 	update_vectors(player);
 }

@@ -3,19 +3,26 @@ CC=cc
 CFLAGS=-Wall -Wextra -Werror -g
 MLX_DIR=lib/minilibx-linux
 MLX_FLAGS=-L$(MLX_DIR) -lmlx -lXext -lX11 -lm
-SRC=	src/main.c				\
-		src/draw_shapes.c		\
-		src/draw_utils.c		\
-		src/init.c				\
-		src/draw_minimap.c		\
-		src/renderer.c			\
-		src/hooks.c				\
-		src/player_movement.c	\
-		src/prep_render.c		\
-		src/time.c				\
-		src/sh_parser.c			\
-		src/mem_alloc.c			\
-		src/rays.c				\
+SRC=	src/main.c						\
+		src/draw_utils.c				\
+		src/init.c						\
+		src/renderer.c					\
+		src/hooks.c						\
+		src/player_movement.c			\
+		src/prep_render.c				\
+		src/time.c						\
+		src/handle_map.c				\
+		src/mem_alloc.c					\
+		src/rays.c						\
+		src/events.c					\
+		src/read_file.c					\
+		src/parse_utils/error_utils.c	\
+		src/parse_utils/ft_split.c		\
+		src/parse_utils/utils.c			\
+		src/parse_utils/list_utils.c 	\
+		src/arg_parse.c 				\
+		lib/get_next_line/get_next_line.c \
+		lib/get_next_line/get_next_line_utils.c \
 
 OBJ=$(SRC:.c=.o)
 LIBFT=lib/libft/libft.a

@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 17:03:13 by muokcan           #+#    #+#             */
-/*   Updated: 2026/01/12 21:29:44 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/01/25 17:59:31 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define GAME_STRUCTS_H
 
 # include <unistd.h>
+# include <stdbool.h>
 # include "../lib/minilibx-linux/mlx.h"
 
 typedef struct	s_mlx
@@ -28,46 +29,6 @@ typedef struct	s_mlx
 	int		l_len;
 	int		endian;
 }	t_mlx;
-
-//	*** FUCNTIONS RELATED TO BRESSENHAM'LINE ALGORITHM ***
-
-typedef struct s_pos
-{
-	int	x0;
-	int	y0;
-	int	z0;
-	int	x1;
-	int	y1;
-	int	z1;
-}	t_pos;
-
-typedef struct s_bres_line
-{
-	int	dx;
-	int	dy;
-	int	sx;
-	int	sy;
-	int	err;
-	int	e2;
-}	t_bres_line;
-
-typedef struct	s_rect
-{
-	int	x;
-	int	y;
-	int	x_coor;
-	int	y_coor;
-	int	color;
-}	t_rect;
-
-typedef struct	s_circle
-{
-	int	x_center_coor;
-	int	y_center_coor;
-	int	radius;
-	int	color;
-
-}	t_circle;
 
 typedef enum e_direction
 {
@@ -145,15 +106,15 @@ typedef struct	s_texture
 
 typedef struct	s_map
 {
-	char	**map_grids;
-	int		width;
-	int		height;
-	int		floor_color;
-	int		ceiling_color;
-	t_texture	texture_n;
-	t_texture	texture_s;
-	t_texture	texture_e;
-	t_texture	texture_w;
+	char				**map_grids;
+	int					width;
+	int					height;
+	unsigned int		floor_color;
+	unsigned int		ceiling_color;
+	t_texture			texture_n;
+	t_texture			texture_s;
+	t_texture			texture_e;
+	t_texture			texture_w;
 }	t_map;
 
 typedef struct	s_data
@@ -179,5 +140,49 @@ typedef struct	s_mem_manager
 	size_t		allocated_blocks;
 	size_t		total_allocated_size;
 }	t_mem_manager;
+
+typedef struct s_list
+{
+    char *content;
+    size_t length;
+    size_t width;
+    struct s_list *next;
+} t_list;
+
+typedef struct s_parse
+{
+    bool west_set;
+    bool east_set;
+    bool north_set;
+    bool south_set;
+    bool floor_set;
+    bool ceiling_set;
+    bool is_map_started;
+    char *west_file;
+    char *east_file;
+    char *north_file;
+    char *south_file;
+    char *floor_line;
+    char *ceiling_line;
+    int floor_r;
+    int floor_g;
+    int floor_b;
+    int ceiling_r;
+    int ceiling_g;
+    int ceiling_b;
+} t_parse;
+
+typedef struct s_game
+{
+    t_parse parse;
+    t_list *map;
+    char **matrix_map;
+    char **tmp;
+    int map_width;
+    int map_height;
+    int player_x;
+    int player_y;
+    char player_dir;
+} t_game;
 
 #endif
