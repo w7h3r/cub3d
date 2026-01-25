@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 23:53:27 by muokcan           #+#    #+#             */
-/*   Updated: 2026/01/25 19:52:23 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/01/25 20:18:25 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,6 @@ void	dda_algorithm(t_data *data, t_ray *ray)
 	if (ray->dda.perp_wall_dist < 0.0001)
 		ray->dda.perp_wall_dist = 0.0001;
 }
-
-/*  BURAYI EL YORDAMI YAPACAIM SONRA  */
 
 t_texture *decide_texture_side(t_data *data, t_ray *ray)
 {
