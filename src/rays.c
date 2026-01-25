@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 23:53:27 by muokcan           #+#    #+#             */
-/*   Updated: 2026/01/25 20:18:25 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/01/25 20:34:59 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ void	init_dda_vars(t_ray *ray, t_player *player)
 	init_dda_vars_y(ray, player);
 }
 
-/*  INIT  */
-
 void	dda_algorithm(t_data *data, t_ray *ray)
 {
 	int	i;
@@ -110,16 +108,16 @@ t_texture *decide_texture_side(t_data *data, t_ray *ray)
 	if (ray->dda.side == 0)
 	{
 		if (ray->ray_dir_x > 0)
-			return (&data->map->texture_w);
-		else
 			return (&data->map->texture_e);
+		else
+			return (&data->map->texture_w);
 	}
 	else
 	{
 		if (ray->ray_dir_y > 0)
-			return (&data->map->texture_n);
-		else
 			return (&data->map->texture_s);
+		else
+			return (&data->map->texture_n);
 	}
 }
 
@@ -134,7 +132,7 @@ int	get_pixel_image(t_texture *texture, int tex_x, int tex_y)
 
 double	calculate_wall_x(t_ray *ray, t_player *player);
 
-int	prepare_pixel(t_texture texture, int wall_start, double wall_x, int tex_y, int line_height)
+int	prepare_pixel(t_ray *ray, t_texture texture, int wall_start, double wall_x, int tex_y, int line_height)
 {
 	double			step;
 	double			tex_pos;
@@ -142,6 +140,8 @@ int	prepare_pixel(t_texture texture, int wall_start, double wall_x, int tex_y, i
 	step = 1.0 * texture.height / (line_height);
 	tex_pos = (wall_start - 1.0 * W_HE / 2 + 1.0 * (line_height) / 2) * step;
 	int		tex_x = (int)(wall_x * (double)(texture.width));
+	if ((ray->dda.side == 0 && ray->ray_dir_x < 0) || (ray->dda.side == 1 && ray->ray_dir_y > 0))
+		tex_x = texture.width - tex_x - 1;
 	tex_pos += step;
 	return (get_pixel_image(&texture, tex_x, tex_pos + (tex_y - (int)wall_start) * step));
 }
@@ -166,7 +166,7 @@ void	render_wall_rectangle(t_data *data, t_ray *ray, int x, double wall_x)
 	the_key_of_everything = wall_start;
 	while (the_key_of_everything < wall_end)
 	{
-		color = prepare_pixel(*decide_texture_side(data, ray), start_pixel, wall_x, the_key_of_everything, wall_height);
+		color = prepare_pixel(ray, *decide_texture_side(data, ray), start_pixel, wall_x, the_key_of_everything, wall_height);
 		put_pixel_to_img(data, x, the_key_of_everything, color);
 		the_key_of_everything++;
 	}
