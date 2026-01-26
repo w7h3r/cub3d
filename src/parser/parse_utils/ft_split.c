@@ -6,12 +6,12 @@
 /*   By: keezgi <keezgi@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 17:44:57 by keezgi            #+#    #+#             */
-/*   Updated: 2026/01/25 17:28:04 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/01/26 23:37:25 by keezgi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
 #include "../../inc/cub3d.h"
+#include "../../inc/parser.h"
 
 static int	ft_wordcount(char const *s, char c)
 {

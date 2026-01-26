@@ -6,7 +6,7 @@
 /*   By: keezgi <keezgi@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 14:58:50 by muokcan           #+#    #+#             */
-/*   Updated: 2026/01/26 22:01:13 by keezgi           ###   ########.fr       */
+/*   Updated: 2026/01/26 23:16:57 by keezgi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ int main(int argc, char **argv)
 	init_game_struct(&game);
 	parser_read_file(&game, argv[1]);
 	if (!parser_handle_map(&game))
+	{
+		free_all_mem();
 		return (1);
+	}
 	init_data(&data, &game);
 	convert_structs(&game, &data);
 	init_mlx(&data);

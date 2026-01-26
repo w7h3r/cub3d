@@ -6,7 +6,7 @@
 /*   By: keezgi <keezgi@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 06:16:42 by keezgi            #+#    #+#             */
-/*   Updated: 2026/01/26 15:05:37 by keezgi           ###   ########.fr       */
+/*   Updated: 2026/01/27 00:00:29 by keezgi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,19 @@ static void	check_comma_count(char *line)
 		parser_print_err_exit("Invalid comma count in RGB line!");
 }
 
+static void	remove_newline(char *str)
+{
+	int	j;
+
+	j = 0;
+	while (str[j])
+	{
+		if (str[j] == '\n')
+			str[j] = '\0';
+		j++;
+	}
+}
+
 void	set_rgb(t_game *game, char *line, int i, char type)
 {
 	char	**tab;
@@ -56,26 +69,23 @@ void	set_rgb(t_game *game, char *line, int i, char type)
 
 	j = 0;
 	index = 0;
-	while (line[i + j])
-	{
-		if (line[i + j] == '\n')
-			line[i + j] = '\0';
-		j++;
-	}
+	remove_newline(line + i);
 	check_comma_count(line + i);
 	tab = parser_ft_split(line + i, ',');
 	while (tab[index] && index < 3)
 	{
 		rgb[index] = parser_ft_atoi(tab[index]);
 		if (rgb[index] == -1)
-			parser_print_err_exit("Invalid RGB value (must be 0-255 and numeric)!");
+		{
+			parser_print_err_exit("Invalid RGB value"
+				"(must be 0-255 and numeric)!");
+		}
 		index++;
 	}
 	if (index != 3)
 		parser_print_err_exit("Missing or extra arguments for RGB!");
 	save_rgb_to_struct(game, rgb, type);
 }
-
 
 void	set_texture(char **path, bool *flag, char *line, int i)
 {
