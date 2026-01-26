@@ -1,6 +1,6 @@
 NAME=cub3D
 CC=cc
-CFLAGS=-Wall -Wextra -Werror -g
+CFLAGS=-Wall -Wextra -Werror -g -I./inc
 MLX_DIR=lib/minilibx-linux
 MLX_FLAGS=-L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 SRC=	src/main.c						\
@@ -11,16 +11,18 @@ SRC=	src/main.c						\
 		src/player_movement.c			\
 		src/prep_render.c				\
 		src/time.c						\
-		src/handle_map.c				\
+		src/parser/handle_map.c			\
 		src/mem_alloc.c					\
 		src/rays.c						\
 		src/events.c					\
-		src/read_file.c					\
-		src/parse_utils/error_utils.c	\
-		src/parse_utils/ft_split.c		\
-		src/parse_utils/utils.c			\
-		src/parse_utils/list_utils.c 	\
-		src/arg_parse.c 				\
+		src/parser/read_file.c			\
+		src/parser/map_algorithm.c 		\
+		src/parser/map_utils.c 			\
+		src/parser/texture_parsing.c 	\
+		src/parser/parse_utils/error_utils.c	\
+		src/parser/parse_utils/ft_split.c		\
+		src/parser/parse_utils/utils.c			\
+		src/parser/parse_utils/list_utils.c 	\
 		lib/get_next_line/get_next_line.c \
 		lib/get_next_line/get_next_line_utils.c \
 

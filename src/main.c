@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muokcan <muokcan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: keezgi <keezgi@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 14:58:50 by muokcan           #+#    #+#             */
-/*   Updated: 2026/01/25 19:51:18 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/01/26 22:01:13 by keezgi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,16 @@ void	convert_structs(t_game *game, t_data *data)
 	data->map->texture_w.path = game->parse.west_file;
 }
 
+int    parser_arg_parse(char *str)
+{
+    size_t pos;
+
+    pos = parser_ft_strlen(str);
+    if (pos < 5 || parser_ft_strcmp(&str[pos - 4] , ".cub"))
+        parser_print_err_exit("File extension doesn't end with .cub");
+    return (0);
+} 
+
 int main(int argc, char **argv)
 {
 	t_data	data;
@@ -61,7 +71,8 @@ int main(int argc, char **argv)
 	}
 	init_game_struct(&game);
 	parser_read_file(&game, argv[1]);
-	parser_handle_map(&game);
+	if (!parser_handle_map(&game))
+		return (1);
 	init_data(&data, &game);
 	convert_structs(&game, &data);
 	init_mlx(&data);

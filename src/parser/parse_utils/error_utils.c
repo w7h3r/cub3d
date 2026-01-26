@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arg_parse.c                                        :+:      :+:    :+:   */
+/*   error_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keezgi <keezgi@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/19 12:31:46 by keezgi            #+#    #+#             */
-/*   Updated: 2026/01/25 17:21:35 by muokcan          ###   ########.fr       */
+/*   Created: 2025/12/19 12:35:15 by keezgi            #+#    #+#             */
+/*   Updated: 2026/01/26 15:01:34 by keezgi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/parser.h"
+#include "parser.h"
 
-int    parser_arg_parse(char *str)
+void    parser_print_err(char *str)
 {
-    size_t pos;
+    parser_putstr_err("Error");
+    parser_putstr_err(str);
+}
 
-    pos = parser_ft_strlen(str);
-    if (pos < 5 || parser_ft_strcmp(&str[pos - 4] , ".cub"))
+void    parser_putstr_err(char *str)
+{
+    int i;
+    i = 0;
+
+    while (str[i])
     {
-        parser_print_err("File extension doesn't end with .cub");
-        return (1);
+        write(2 , &str[i] , 1);
+        i++;
     }
-    return (0);
+    write(2 , "\n" , 1);
+}
+
+void parser_print_err_exit(char *str)
+{
+    parser_print_err(str);
+    exit (1);
 }
