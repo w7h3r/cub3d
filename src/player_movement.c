@@ -13,17 +13,6 @@
 #include "../inc/cub3d.h"
 #include <math.h>
 
-// int	is_wall(t_player *player)
-// {
-// }
-//
-// int	can_move(t_player *player)
-// {
-// 	if (is_wall(player))
-// 		return (1);
-// 	return (0);
-// }
-
 int	move_forward(t_player *player)
 {
 	double new_x;

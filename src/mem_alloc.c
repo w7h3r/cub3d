@@ -21,6 +21,20 @@ static t_mem_manager	*get_mem(void)
 	return (&mem_manager);
 }
 
+static void	assign_node(t_mem_manager *mem_manager, t_all_mem *new_mem)
+{
+	if (!mem_manager->head)
+	{
+		mem_manager->head = new_mem;
+		mem_manager->tail = new_mem;
+	}
+	else
+	{
+		mem_manager->tail->next = new_mem;
+		mem_manager->tail = new_mem;
+	}
+}
+
 void	*reg_alloc(size_t size)
 {
 	t_mem_manager	*mem_manager;
@@ -36,17 +50,8 @@ void	*reg_alloc(size_t size)
 		free(new_mem);
 		return (NULL);
 	}
+	assign_node(mem_manager, new_mem);
 	new_mem->next = NULL;
-	if (!mem_manager->head)
-	{
-		mem_manager->head = new_mem;
-		mem_manager->tail = new_mem;
-	}
-	else
-	{
-		mem_manager->tail->next = new_mem;
-		mem_manager->tail = new_mem;
-	}
 	mem_manager->total_allocated_size += size;
 	mem_manager->allocated_blocks++;
 	return (new_mem->mem);
@@ -69,16 +74,6 @@ void	free_all_mem(void)
 	}
 	mem_manager->head = NULL;
 	mem_manager->tail = NULL;
-	// printf("Freed all allocated memory blocks: %zu\n", mem_manager->allocated_blocks);
-	// printf("Total freed memory size: %zu bytes\n", mem_manager->total_allocated_size);
 	mem_manager->allocated_blocks = 0;
 	mem_manager->total_allocated_size = 0;
 }
-
-// void	print_mem_status(void)
-// {
-// 	t_mem_manager	*mem_manager;
-//
-// 	mem_manager = get_mem();
-// 	printf("Allocated memory blocks: %zu\n", mem_manager->allocated_blocks);
-// }
