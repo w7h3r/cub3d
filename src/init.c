@@ -17,7 +17,6 @@
 
 void	err_exit_init(t_data *data, const char *err_msg)
 {
-	(void)data;
 	printf("%s\n", err_msg);
 	exit_program(data);
 }
