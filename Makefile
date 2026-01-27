@@ -16,6 +16,8 @@ SRC=	src/main.c						\
 		src/handle_map.c				\
 		src/mem_alloc.c					\
 		src/rays.c						\
+		src/dda_utils.c					\
+		src/wall_render.c				\
 		src/events.c					\
 		src/read_file.c					\
 		src/parse_utils/error_utils.c	\

@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 17:01:31 by muokcan           #+#    #+#             */
-/*   Updated: 2026/01/27 03:16:35 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/01/27 17:15:52 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ void		update_vectors(t_player *player);
 int			key_press(int key_code, t_data *data);
 int			key_release(int key_code, t_data *data);
 void		cast_rays(t_data *data);
+void		render_wall_rectangle(t_data *data,
+				t_ray *ray, int x, double wall_x);
+double		calculate_wall_x(t_ray *ray, t_player *player);
+void		dda_iter(t_data *data, t_ray *ray);
+void		init_dda_vars_x(t_ray *ray, t_player *player);
+void		init_dda_vars_y(t_ray *ray, t_player *player);
 
 int			move_forward(t_player *player);
 int			move_backward(t_player *player);

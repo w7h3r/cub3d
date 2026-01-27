@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/27 03:04:01 by muokcan           #+#    #+#             */
-/*   Updated: 2026/01/27 03:04:37 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/01/27 15:12:14 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,3 @@ void	init_map(t_map **map)
 	(*map)->floor_color = 0xF01A1A;
 	(*map)->ceiling_color = 0x00FFFF;
 }
-
-
