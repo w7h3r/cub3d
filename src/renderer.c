@@ -16,8 +16,7 @@
 
 void	clear_image(t_data *data)
 {
-	ft_memcpy(data->mlx->addr, \
-		data->mlx->bg_addr, W_WI * W_HE * sizeof(int));
+	ft_memcpy(data->mlx->addr, data->mlx->bg_addr, W_WI * W_HE * sizeof(int));
 }
 
 void	fill_floor_ceiling(t_data *data)
@@ -57,7 +56,8 @@ void	render_scene_frame(t_data *data)
 void	renderer(t_data *data)
 {
 	render_scene_frame(data);
-	mlx_put_image_to_window(data->mlx->mlx, data->mlx->win, data->mlx->img, 0, 0);
+	mlx_put_image_to_window(data->mlx->mlx,
+		data->mlx->win, data->mlx->img, 0, 0);
 }
 
 int	render_loop(t_data *data)
@@ -66,7 +66,6 @@ int	render_loop(t_data *data)
 	{
 		detect_determ_input(data->player);
 		renderer(data);
-		// fps_debug();
 		return (0);
 	}
 	return (1);

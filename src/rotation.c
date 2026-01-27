@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_utils.c                                       :+:      :+:    :+:   */
+/*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/17 13:55:27 by muokcan           #+#    #+#             */
-/*   Updated: 2026/01/27 02:48:46 by muokcan          ###   ########.fr       */
+/*   Created: 2026/01/27 02:43:52 by muokcan           #+#    #+#             */
+/*   Updated: 2026/01/27 02:45:48 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+#include <math.h>
 
-void	put_pixel_to_img(t_data *data, int x, int y, int color)
+int	rotate_left(t_player *player)
 {
-	int	*pixel;
+	player->angle -= ROTATION_SPEED * player->data->delta_time;
+	if (player->angle < 0)
+		player->angle += 2 * M_PI;
+	update_vectors(player);
+	return (0);
+}
 
-	if (x < 0 || y < 0 || x >= W_WI || y >= W_HE)
-		return ;
-	pixel = (int *)(data->mlx->addr + (y * data->mlx->l_len + x
-				* (data->mlx->bitbp / 8)));
-	*pixel = color;
+int	rotate_right(t_player *player)
+{
+	player->angle += ROTATION_SPEED * player->data->delta_time;
+	if (player->angle > 2 * M_PI)
+		player->angle -= 2 * M_PI;
+	update_vectors(player);
+	return (0);
 }

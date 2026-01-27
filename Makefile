@@ -6,9 +6,11 @@ MLX_FLAGS=-L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 SRC=	src/main.c						\
 		src/draw_utils.c				\
 		src/init.c						\
+		src/init_utils.c				\
 		src/renderer.c					\
 		src/hooks.c						\
 		src/player_movement.c			\
+		src/rotation.c					\
 		src/prep_render.c				\
 		src/time.c						\
 		src/handle_map.c				\

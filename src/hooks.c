@@ -67,4 +67,3 @@ int	key_release(int key_code, t_data *data)
 	set_key_state(&data->player->key_state, key_code, 0);
 	return (0);
 }
-

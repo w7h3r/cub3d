@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/25 19:49:30 by muokcan           #+#    #+#             */
-/*   Updated: 2026/01/25 19:49:41 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/01/27 02:49:44 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	hook_events(t_data *data)
 
 int	is_player_moving(t_key_state *key_state)
 {
-	return (key_state->w_key || key_state->a_key || key_state->s_key || \
-		key_state->d_key || key_state->left_arrow || key_state->right_arrow);
+	return (key_state->w_key || key_state->a_key || key_state->s_key
+		|| key_state->d_key || key_state->left_arrow || key_state->right_arrow);
 }
 
 void	detect_determ_input(t_player *player)
@@ -40,4 +40,3 @@ void	detect_determ_input(t_player *player)
 	if (player->key_state.right_arrow)
 		rotate_right(player);
 }
-
