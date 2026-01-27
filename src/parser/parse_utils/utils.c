@@ -6,22 +6,23 @@
 /*   By: keezgi <keezgi@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 16:53:35 by keezgi            #+#    #+#             */
-/*   Updated: 2026/01/25 17:28:17 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/01/26 23:48:16 by keezgi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
 #include "../../inc/cub3d.h"
+#include "../../inc/parser.h"
 
-size_t parser_ft_strlen(char *str)
+size_t	parser_ft_strlen(char *str)
 {
-    size_t i;
+	size_t	i;
 
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
+
 int	parser_ft_strcmp(char *s1, char *s2)
 {
 	int	i;
@@ -41,7 +42,7 @@ char	*parser_ft_strdup(char *str)
 	int		i;
 	char	*s1;
 	size_t	len;
-	
+
 	if (!str)
 		return (NULL);
 	i = 0;
@@ -84,12 +85,11 @@ char	*parser_ft_substr(char *s, unsigned int start, size_t len)
 
 int	parser_ft_atoi(char *str)
 {
-	int i;
-	int num;
+	int	i;
+	int	num;
 
 	i = 0;
 	num = 0;
-
 	while (str[i] == ' ' || str[i] == '\t')
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
@@ -105,4 +105,3 @@ int	parser_ft_atoi(char *str)
 		return (-1);
 	return (num);
 }
-

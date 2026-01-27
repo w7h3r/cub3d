@@ -6,7 +6,7 @@
 /*   By: keezgi <keezgi@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 23:33:25 by keezgi            #+#    #+#             */
-/*   Updated: 2025/12/26 13:39:18 by keezgi           ###   ########.fr       */
+/*   Updated: 2026/01/26 23:30:42 by keezgi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@
 
 # endif
 
-#include <stddef.h>
+# include "cub3d.h"
+# include <stddef.h>
 
-size_t  ft_strlen_gnl(char *str);
+size_t	ft_strlen_gnl(char *str);
 int		gnl_strchr(char *str, char a);
 char	*gnl_strjoin(char *s1, char *s2);
 char	*get_next_line(int fd);
