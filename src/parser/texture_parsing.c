@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../inc/parser.h"
 
 static void	save_rgb_to_struct(t_game *game, int *rgb, char type)
 {
@@ -64,10 +64,8 @@ void	set_rgb(t_game *game, char *line, int i, char type)
 {
 	char	**tab;
 	int		rgb[3];
-	int		j;
 	int		index;
 
-	j = 0;
 	index = 0;
 	remove_newline(line + i);
 	check_comma_count(line + i);
