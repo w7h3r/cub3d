@@ -60,7 +60,7 @@ char	**list_to_matrix(t_list *map)
 	t_list	*temp;
 	size_t	i;
 
-	matrix = reg_alloc(sizeof(char *) * parser_get_list_size(map) + 1);
+	matrix = reg_alloc(sizeof(char *) * (parser_get_list_size(map) + 1));
 	temp = map;
 	i = 0;
 	while (temp)
