@@ -33,15 +33,15 @@ void	convert_structs(t_game *game, t_data *data)
 	data->map->texture_w.path = game->parse.west_file;
 }
 
-int    parser_arg_parse(char *str)
+int	parser_arg_parse(char *str)
 {
-    size_t pos;
+	size_t	pos;
 
-    pos = parser_ft_strlen(str);
-    if (pos < 5 || parser_ft_strcmp(&str[pos - 4] , ".cub"))
-        parser_print_err_exit("File extension doesn't end with .cub");
-    return (0);
-} 
+	pos = parser_ft_strlen(str);
+	if (pos < 5 || parser_ft_strcmp(&str[pos - 4], ".cub"))
+		parser_print_err_exit("File extension doesn't end with .cub");
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
