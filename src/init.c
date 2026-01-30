@@ -72,7 +72,6 @@ void	init_mlx(t_data *data)
 			&data->mlx->l_len, &data->mlx->endian);
 	if (!data->mlx->bg_addr)
 		err_exit_init(data, "Error: Can't take the image addr");
-	fill_background(data, IMAGE_ERASE_COLOR);
 }
 
 void	update_vectors(t_player *player)

@@ -18,6 +18,23 @@ void	init_game_struct(t_game *game)
 	game->map_height = 0;
 	game->matrix_map = NULL;
 	game->tmp = NULL;
+	game->player_x = 0;
+	game->player_y = 0;
+	game->player_dir = 0;
+	game->parse.north_file = NULL;
+	game->parse.south_file = NULL;
+	game->parse.east_file = NULL;
+	game->parse.west_file = NULL;
+	game->parse.west_set = false;
+	game->parse.east_set = false;
+	game->parse.south_set = false;
+	game->parse.north_set = false;
+	game->parse.floor_r = -1;
+	game->parse.floor_g = -1;
+	game->parse.floor_b = -1;
+	game->parse.ceiling_r = -1;
+	game->parse.ceiling_g = -1;
+	game->parse.ceiling_b = -1;
 }
 
 void	init_texture(t_data *data, t_texture *texture)
@@ -68,4 +85,16 @@ void	init_map(t_map **map)
 	(*map)->map_grids = NULL;
 	(*map)->floor_color = 0xF01A1A;
 	(*map)->ceiling_color = 0x00FFFF;
+	(*map)->texture_n.path = NULL;
+	(*map)->texture_s.path = NULL;
+	(*map)->texture_e.path = NULL;
+	(*map)->texture_w.path = NULL;
+	(*map)->texture_n.img = NULL;
+	(*map)->texture_s.img = NULL;
+	(*map)->texture_e.img = NULL;
+	(*map)->texture_w.img = NULL;
+	(*map)->texture_n.addr = NULL;
+	(*map)->texture_s.addr = NULL;
+	(*map)->texture_e.addr = NULL;
+	(*map)->texture_w.addr = NULL;
 }
