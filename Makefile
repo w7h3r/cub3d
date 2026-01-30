@@ -3,31 +3,30 @@ CC=cc
 CFLAGS=-Wall -Wextra -Werror -g -I./inc
 MLX_DIR=lib/minilibx-linux
 MLX_FLAGS=-L$(MLX_DIR) -lmlx -lXext -lX11 -lm
-SRC=	src/main.c						\
-		src/draw_utils.c				\
-		src/init.c						\
-		src/init_utils.c				\
-		src/renderer.c					\
-		src/hooks.c						\
-		src/player_movement.c			\
-		src/rotation.c					\
-		src/prep_render.c				\
-		src/time.c						\
-		src/parser/handle_map.c			\
-		src/mem_alloc.c					\
-		src/rays.c						\
-		src/dda_utils.c					\
-		src/wall_render.c				\
-		src/events.c					\
-		src/parser/read_file.c			\
-		src/parser/map_algorithm.c 		\
-		src/parser/map_utils.c 			\
-		src/parser/texture_parsing.c 	\
+SRC=	src/main.c								\
+		src/draw_utils.c						\
+		src/init.c								\
+		src/init_utils.c						\
+		src/renderer.c							\
+		src/hooks.c								\
+		src/player_movement.c					\
+		src/rotation.c							\
+		src/time.c								\
+		src/parser/handle_map.c					\
+		src/mem_alloc.c							\
+		src/rays.c								\
+		src/dda_utils.c							\
+		src/wall_render.c						\
+		src/events.c							\
+		src/parser/read_file.c					\
+		src/parser/map_algorithm.c				\
+		src/parser/map_utils.c					\
+		src/parser/texture_parsing.c			\
 		src/parser/parse_utils/error_utils.c	\
 		src/parser/parse_utils/ft_split.c		\
 		src/parser/parse_utils/utils.c			\
 		src/parser/parse_utils/list_utils.c 	\
-		lib/get_next_line/get_next_line.c \
+		lib/get_next_line/get_next_line.c		\
 		lib/get_next_line/get_next_line_utils.c \
 
 OBJ=$(SRC:.c=.o)
