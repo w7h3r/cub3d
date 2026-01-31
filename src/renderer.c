@@ -14,11 +14,6 @@
 #include "../lib/libft/libft.h"
 #include "../lib/minilibx-linux/mlx.h"
 
-void	clear_image(t_data *data)
-{
-	ft_memcpy(data->mlx->addr, data->mlx->bg_addr, W_WI * W_HE * sizeof(int));
-}
-
 void	fill_floor_ceiling(t_data *data)
 {
 	int	x;
