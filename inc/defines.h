@@ -32,8 +32,10 @@
 
 # define SECOND 1000
 
-# define DDA_IT_LIMIT 100
+# define DDA_IT_LIMIT 1000
 
 # define PI 3.14
+
+# define FOV 0.66
 
 #endif

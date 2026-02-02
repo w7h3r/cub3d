@@ -18,6 +18,7 @@ SRC=	src/main.c								\
 		src/dda_utils.c							\
 		src/wall_render.c						\
 		src/events.c							\
+		src/fd_utils.c							\
 		src/parser/read_file.c					\
 		src/parser/map_algorithm.c				\
 		src/parser/map_utils.c					\

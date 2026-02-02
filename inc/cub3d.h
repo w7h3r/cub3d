@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 17:01:31 by muokcan           #+#    #+#             */
-/*   Updated: 2026/01/27 17:15:52 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/02/03 01:52:38 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,17 @@ void		init_mlx(t_data *data);
 void		init_data(t_data *data, t_game *game);
 void		init_player(t_player *player, t_game *game);
 void		init_game_struct(t_game *game);
-int			exit_program(t_data *data);
+int			exit_program(void);
 void		init_all_textures(t_data *data);
 void		init_texture(t_data *data, t_texture *texture);
 void		init_game_struct(t_game *game);
-void		err_exit_init(t_data *data, const char *err_msg);
+void		err_exit_init(const char *err_msg);
 void		init_map(t_map **map);
 void		init_keys(t_key_state *keys);
+t_data		**get_data(void);
+int			*reg_fd();
+void		close_reg_fd(void);
+int			open_reg_fd(const char *pathname, int flags);
 
 long long	get_time(void);
 long long	time_diff(long long last_fr_t, long long curr_fr_t);

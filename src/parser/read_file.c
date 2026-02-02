@@ -6,7 +6,7 @@
 /*   By: keezgi <keezgi@student.42kocaeli.com.tr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:52:55 by keezgi            #+#    #+#             */
-/*   Updated: 2026/01/26 23:56:07 by keezgi           ###   ########.fr       */
+/*   Updated: 2026/02/03 01:36:02 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	parser_read_file(t_game *game, char *file)
 
 	ft_bzero(&game->parse, sizeof(t_parse));
 	game->map = NULL;
-	fd = open(file, O_RDONLY);
+	fd = open_reg_fd(file, O_RDONLY);
 	if (fd < 0)
 		parser_print_err_exit("File doesn't have read permission!");
 	while (1)

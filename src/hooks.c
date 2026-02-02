@@ -6,19 +6,27 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 18:15:20 by muokcan           #+#    #+#             */
-/*   Updated: 2025/12/28 06:41:14 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/02/03 01:52:05 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 #include <stdlib.h>
 
-int	exit_program(t_data *data)
+t_data	**get_data(void)
 {
+	static t_data	*data = NULL;
+
+	return (&data);
+}
+
+int	exit_program(void)
+{
+	t_data	*data = *get_data();
+	if (!data)
+		exit(0);
 	if (data->mlx->img)
 		mlx_destroy_image(data->mlx->mlx, data->mlx->img);
-	if (data->mlx->bg_img)
-		mlx_destroy_image(data->mlx->mlx, data->mlx->bg_img);
 	if (data->map->texture_n.img)
 		mlx_destroy_image(data->mlx->mlx, data->map->texture_n.img);
 	if (data->map->texture_s.img)
@@ -34,6 +42,7 @@ int	exit_program(t_data *data)
 		mlx_destroy_display(data->mlx->mlx);
 		free(data->mlx->mlx);
 	}
+	close_reg_fd();
 	free_all_mem();
 	exit(0);
 }
@@ -57,7 +66,7 @@ void	set_key_state(t_key_state *key_event, int key_code, int state)
 int	key_press(int key_code, t_data *data)
 {
 	if (key_code == KEY_ESC)
-		exit_program(data);
+		exit_program();
 	set_key_state(&data->player->key_state, key_code, 1);
 	return (0);
 }

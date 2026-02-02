@@ -68,6 +68,6 @@ int	main(int argc, char **argv)
 	renderer(&data);
 	mlx_loop_hook(data.mlx->mlx, render_loop, &data);
 	mlx_loop(data.mlx->mlx);
-	exit_program(&data);
+	exit_program();
 	return (0);
 }

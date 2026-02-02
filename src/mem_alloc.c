@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 20:44:29 by muokcan           #+#    #+#             */
-/*   Updated: 2026/01/12 22:08:08 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/02/03 01:56:19 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	*reg_alloc(size_t size)
 	if (!new_mem->mem)
 	{
 		free(new_mem);
-		return (NULL);
+		free_all_mem();
+		exit(1);
 	}
 	assign_node(mem_manager, new_mem);
 	new_mem->next = NULL;
@@ -72,6 +73,7 @@ void	free_all_mem(void)
 		free(current);
 		current = next;
 	}
+	close_reg_fd();
 	mem_manager->head = NULL;
 	mem_manager->tail = NULL;
 	mem_manager->allocated_blocks = 0;

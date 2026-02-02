@@ -46,12 +46,12 @@ void	init_texture(t_data *data, t_texture *texture)
 	if (!texture->img)
 	{
 		printf("Failed path: [%s]\n", texture->path);
-		err_exit_init(data, "Error: Can't load texture image");
+		err_exit_init("Error: Can't load texture image");
 	}
 	texture->addr = mlx_get_data_addr(texture->img, &texture->bitbp,
 			&texture->l_len, &texture->endian);
 	if (!texture->addr)
-		err_exit_init(data, "Error: Can't get texture image address");
+		err_exit_init("Error: Can't get texture image address");
 }
 
 void	init_all_textures(t_data *data)

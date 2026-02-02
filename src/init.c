@@ -15,23 +15,21 @@
 #include <stdio.h>
 #include <math.h>
 
-void	err_exit_init(t_data *data, const char *err_msg)
+void	err_exit_init(const char *err_msg)
 {
 	printf("%s\n", err_msg);
-	exit_program(data);
+	exit_program();
 }
 
 void	init_data(t_data *data, t_game *game)
 {
+	*get_data() = data;
 	data->mlx = reg_alloc(sizeof(t_mlx));
 	if (!data->mlx)
-		err_exit_init(NULL, "MLX memory allocation failed!\n");
+		err_exit_init("MLX memory allocation failed!\n");
 	data->player = reg_alloc(sizeof(t_player));
 	if (!data->player)
-	{
-		free(data->mlx);
-		err_exit_init(NULL, "Player memory allocation failed!\n");
-	}
+		err_exit_init("Player memory allocation failed!\n");
 	init_player(data->player, game);
 	init_keys(&data->player->key_state);
 	init_map(&data->map);
@@ -40,46 +38,37 @@ void	init_data(t_data *data, t_game *game)
 	data->mlx->win = NULL;
 	data->mlx->addr = NULL;
 	data->mlx->img = NULL;
-	data->mlx->bg_addr = NULL;
-	data->mlx->bg_img = NULL;
 	data->last_frame_time = 0;
 	data->delta_time = 0.0;
 	data->ray = NULL;
 	data->ray = reg_alloc(sizeof(t_ray) * W_WI);
 	if (!data->ray)
-		err_exit_init(data, "Ray memory allocation failed!\n");
+		err_exit_init("Ray memory allocation failed!\n");
 }
 
 void	init_mlx(t_data *data)
 {
 	data->mlx->mlx = mlx_init();
 	if (!data->mlx->mlx)
-		err_exit_init(data, "Error: Can't initialize mlx");
+		err_exit_init("Error: Can't initialize mlx");
 	data->mlx->win = mlx_new_window(data->mlx->mlx, W_WI, W_HE, "cub3D");
 	if (!data->mlx->win)
-		err_exit_init(data, "Error: Can't initialize window");
+		err_exit_init("Error: Can't initialize window");
 	data->mlx->img = mlx_new_image(data->mlx->mlx, W_WI, W_HE);
 	if (!data->mlx->img)
-		err_exit_init(data, "Error: Can't initialize image");
+		err_exit_init("Error: Can't initialize image");
 	data->mlx->addr = mlx_get_data_addr(data->mlx->img, &data->mlx->bitbp,
 			&data->mlx->l_len, &data->mlx->endian);
 	if (!data->mlx->addr)
-		err_exit_init(data, "Error: Can't take the image addr");
-	data->mlx->bg_img = mlx_new_image(data->mlx->mlx, W_WI, W_HE);
-	if (!data->mlx->bg_img)
-		err_exit_init(data, "Error: Can't initialize image");
-	data->mlx->bg_addr = mlx_get_data_addr(data->mlx->bg_img, &data->mlx->bitbp,
-			&data->mlx->l_len, &data->mlx->endian);
-	if (!data->mlx->bg_addr)
-		err_exit_init(data, "Error: Can't take the image addr");
+		err_exit_init("Error: Can't take the image addr"); 
 }
 
 void	update_vectors(t_player *player)
 {
 	player->x_dir = cos(player->angle);
 	player->y_dir = sin(player->angle);
-	player->x_plane = -sin(player->angle) * 0.66;
-	player->y_plane = cos(player->angle) * 0.66;
+	player->x_plane = -sin(player->angle) * FOV;
+	player->y_plane = cos(player->angle) * FOV;
 }
 
 void	init_player(t_player *player, t_game *game)
@@ -87,13 +76,13 @@ void	init_player(t_player *player, t_game *game)
 	player->x_coor = game->player_x + 0.5;
 	player->y_coor = game->player_y + 0.5;
 	if (game->player_dir == 'N')
-		player->angle = 3.14 * 1.5;
+		player->angle = PI * 1.5;
 	else if (game->player_dir == 'S')
-		player->angle = 3.14 * 0.5;
+		player->angle = PI * 0.5;
 	else if (game->player_dir == 'E')
-		player->angle = 0;
+		player->angle = 0; 
 	else if (game->player_dir == 'W')
-		player->angle = 3.14;
+		player->angle = PI;
 	init_keys(&player->key_state);
 	update_vectors(player);
 }
