@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 20:44:29 by muokcan           #+#    #+#             */
-/*   Updated: 2026/02/03 01:56:19 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/02/03 05:35:09 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ void	*reg_alloc(size_t size)
 	mem_manager = get_mem();
 	new_mem = (t_all_mem *)malloc(sizeof(t_all_mem));
 	if (!new_mem)
-		return (NULL);
+	{
+		free_all_mem();
+		exit(1);
+	}
 	new_mem->mem = malloc(size);
 	if (!new_mem->mem)
 	{

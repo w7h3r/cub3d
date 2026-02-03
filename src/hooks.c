@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 18:15:20 by muokcan           #+#    #+#             */
-/*   Updated: 2026/02/03 04:40:19 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/02/03 05:36:26 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,7 @@ int	exit_program(void)
 		exit(0);
 	if (data->mlx->img)
 		mlx_destroy_image(data->mlx->mlx, data->mlx->img);
-	if (data->map->texture_n.img)
-		mlx_destroy_image(data->mlx->mlx, data->map->texture_n.img);
-	if (data->map->texture_s.img)
-		mlx_destroy_image(data->mlx->mlx, data->map->texture_s.img);
-	if (data->map->texture_e.img)
-		mlx_destroy_image(data->mlx->mlx, data->map->texture_e.img);
-	if (data->map->texture_w.img)
-		mlx_destroy_image(data->mlx->mlx, data->map->texture_w.img);
+	delete_texture();
 	if (data->mlx->win)
 		mlx_destroy_window(data->mlx->mlx, data->mlx->win);
 	if (data->mlx->mlx)

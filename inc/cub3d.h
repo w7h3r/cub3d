@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 17:01:31 by muokcan           #+#    #+#             */
-/*   Updated: 2026/02/03 04:42:21 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/02/03 05:33:46 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_data		**get_data(void);
 int			*reg_fd(void);
 void		close_reg_fd(void);
 int			open_reg_fd(const char *pathname, int flags);
+void		delete_texture(void);
 
 long long	get_time(void);
 long long	time_diff(long long last_fr_t, long long curr_fr_t);
