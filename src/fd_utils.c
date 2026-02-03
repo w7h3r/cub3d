@@ -6,15 +6,15 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 01:26:09 by muokcan           #+#    #+#             */
-/*   Updated: 2026/02/03 01:55:51 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/02/03 04:41:49 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-int *reg_fd()
+int	*reg_fd(void)
 {
-	static int fd = -1;
+	static int	fd = -1;
 
 	return (&fd);
 }

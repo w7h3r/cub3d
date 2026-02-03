@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 17:01:31 by muokcan           #+#    #+#             */
-/*   Updated: 2026/02/03 01:52:38 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/02/03 04:42:21 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		err_exit_init(const char *err_msg);
 void		init_map(t_map **map);
 void		init_keys(t_key_state *keys);
 t_data		**get_data(void);
-int			*reg_fd();
+int			*reg_fd(void);
 void		close_reg_fd(void);
 int			open_reg_fd(const char *pathname, int flags);
 

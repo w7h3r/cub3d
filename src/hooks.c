@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 18:15:20 by muokcan           #+#    #+#             */
-/*   Updated: 2026/02/03 01:52:05 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/02/03 04:40:19 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ t_data	**get_data(void)
 
 int	exit_program(void)
 {
-	t_data	*data = *get_data();
+	t_data	*data;
+
+	data = *get_data();
 	if (!data)
 		exit(0);
 	if (data->mlx->img)

@@ -6,7 +6,7 @@
 /*   By: muokcan <muokcan@student.42kocaeli.com.tr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 15:04:32 by muokcan           #+#    #+#             */
-/*   Updated: 2026/01/27 03:23:49 by muokcan          ###   ########.fr       */
+/*   Updated: 2026/02/03 04:40:48 by muokcan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	init_mlx(t_data *data)
 	data->mlx->addr = mlx_get_data_addr(data->mlx->img, &data->mlx->bitbp,
 			&data->mlx->l_len, &data->mlx->endian);
 	if (!data->mlx->addr)
-		err_exit_init("Error: Can't take the image addr"); 
+		err_exit_init("Error: Can't take the image addr");
 }
 
 void	update_vectors(t_player *player)
@@ -80,7 +80,7 @@ void	init_player(t_player *player, t_game *game)
 	else if (game->player_dir == 'S')
 		player->angle = PI * 0.5;
 	else if (game->player_dir == 'E')
-		player->angle = 0; 
+		player->angle = 0;
 	else if (game->player_dir == 'W')
 		player->angle = PI;
 	init_keys(&player->key_state);
