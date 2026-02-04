@@ -1,5 +1,6 @@
-Cub3d 
 *This project has been created as part of the 42 curriculum by @muokcan and @keezgi.* 
+
+cub3D
 
 Description 
 Goal of this project is to create an old fashion Wolfenstein3D-like engine. For rendering the walls as 3D objects,
