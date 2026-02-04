@@ -14,6 +14,7 @@ Instructions To test this project, in order:
 
 Resources 
 
-We've done a lot of research about raycasting and its utilities. The mathematical equations were quite complex so we had to read a bunch of resources and guides.
+We've done a lot of research about raycasting and its utilities. The mathematical equations were quite complex so we had to read a bunch of resources and guides. Also AI supported us by understand the proofs of mathematical equtions and geometry of the project.
+
 List of these sources:
 - [Lodev.org](https://lodev.org/cgtutor/raycasting.html)
