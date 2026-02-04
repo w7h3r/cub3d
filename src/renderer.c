@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-#include "../lib/libft/libft.h"
 #include "../lib/minilibx-linux/mlx.h"
 
 void	fill_floor_ceiling(t_data *data)

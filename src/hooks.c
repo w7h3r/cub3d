@@ -37,7 +37,6 @@ int	exit_program(void)
 		mlx_destroy_display(data->mlx->mlx);
 		free(data->mlx->mlx);
 	}
-	close_reg_fd();
 	free_all_mem();
 	exit(0);
 }

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+#include "../lib/libft/libft.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -41,13 +42,13 @@ void	*reg_alloc(size_t size)
 	t_all_mem		*new_mem;
 
 	mem_manager = get_mem();
-	new_mem = (t_all_mem *)malloc(sizeof(t_all_mem));
+	new_mem = (t_all_mem *)ft_calloc(sizeof(t_all_mem), 1);
 	if (!new_mem)
 	{
 		free_all_mem();
 		exit(1);
 	}
-	new_mem->mem = malloc(size);
+	new_mem->mem = ft_calloc(size, 1);
 	if (!new_mem->mem)
 	{
 		free(new_mem);

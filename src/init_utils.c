@@ -76,10 +76,7 @@ void	init_map(t_map **map)
 {
 	*map = reg_alloc(sizeof(t_map));
 	if (!*map)
-	{
-		printf("Map memory allocation failed!\n");
-		exit(1);
-	}
+		err_exit_init("Map memory allocation failed!\n");
 	(*map)->width = 0;
 	(*map)->height = 0;
 	(*map)->map_grids = NULL;
