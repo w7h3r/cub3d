@@ -2,7 +2,9 @@
 
 cub3D
 
+
 Description 
+
 Goal of this project is to create an old fashion Wolfenstein3D-like engine. For rendering the walls as 3D objects,
 raycasting will be the cornerstone of the project.
 
