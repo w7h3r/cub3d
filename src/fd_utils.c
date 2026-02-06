@@ -30,6 +30,9 @@ void	close_reg_fd(void)
 
 int	open_reg_fd(const char *pathname, int flags)
 {
-	*reg_fd() = open(pathname, flags);
+	int	temp;
+
+	temp = open(pathname, flags);
+	*reg_fd() = temp;
 	return (*reg_fd());
 }
