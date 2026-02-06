@@ -13,7 +13,6 @@
 #include "../inc/cub3d.h"
 #include "../lib/libft/libft.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 static t_mem_manager	*get_mem(void)
 {
